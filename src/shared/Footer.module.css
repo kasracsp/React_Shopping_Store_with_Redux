@@ -1,0 +1,72 @@
+.container{
+  width: 100%;
+  background-color: rgb(68, 82, 104);
+  padding: 1rem;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 4rem;
+}
+.conditions{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(238, 255, 238, 0.144);
+  padding-bottom: 1rem;
+}
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+.logo img{
+  height: 30px;
+}
+.logo img:last-child{
+  height: 30px;
+  padding: .2rem;
+  background-color: #efe7;
+  border-radius: .5rem;
+  display: none;
+}
+.location{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-family: 'Oswald','Roboto',serif;
+}
+.location img{
+  height: 15px;
+}
+.continent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid white;
+  border-radius: 0.2rem;
+  padding: .3rem 1rem .3rem .3rem;
+}
+.copyRight{
+  width: 100%;
+  text-align: center;
+  padding-top: .5rem;
+  font-size: .8rem;
+  font-family: 'Oswald', 'Roboto', serif;
+  color: rgba(238, 255, 238, 0.788);
+}
+@media screen and (min-width:576px) {
+  .container {
+    margin-bottom: 0;
+  }
+  .logo img:last-child {
+    display: block;
+  }
+}
