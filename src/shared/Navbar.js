@@ -2,7 +2,6 @@ import React,{ useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { getCategories, getSuggestions } from '../helper/functions'
-import { v4 } from 'uuid'
 
 //styles
 import styles from './Navbar.module.css'
@@ -15,6 +14,7 @@ const Navbar = () => {
   const [openMenu,setOpenMenu]=useState(false)
   const [search,setSearch]=useState('')
   const [suggestionList,setSuggestionList]=useState([])
+  const [openSearch,setOpenSearch]=useState(false)
   const searchRef=useRef()
 
   useEffect(()=>{
@@ -37,6 +37,7 @@ const Navbar = () => {
   const clearSearchHandler=e=>{
     setSearch('')
     setSuggestionList([])
+    setOpenSearch(false)
   }
 
   return (
@@ -52,14 +53,15 @@ const Navbar = () => {
             <span className='material-icons' id={styles.expand}>expand_more</span>
           </div>
           <div className={styles.categories} id={openMenu ? styles.show : ''}>
-            {getCategories(productsState.products).map(category=><Link key={v4()} to={`/products?category=${category}`} onClick={()=>setOpenMenu(false)}>{category}</Link>)}
+            {getCategories(productsState.products).map((category,index)=><Link to={`/products?category=${category}`} onClick={()=>setOpenMenu(false)}  key={index} >{category}</Link>)}
             <Link to='/products'onClick={()=>setOpenMenu(false)} >all categories</Link>
           </div>
         </div>  
       </div>
 
-      <div className={styles.search} ref={searchRef} >
+      <div className={styles.search} ref={searchRef} id={openSearch ? styles.show : ''}>
         <div className={styles.searchInput}>
+          <span className='material-icons' id={openSearch? styles.show : styles.hidden}onClick={clearSearchHandler}>keyboard_backspace</span>
           <input type="text" placeholder='What are you looking for...' value={search} onChange={searchHandler}/>
           <span className='material-icons'>search</span>
         </div>
@@ -77,7 +79,25 @@ const Navbar = () => {
       </div>
 
       <div className={styles.rigthNav}>
-
+        <Link to='/' className={styles.menu} id={styles.home}>
+          <span className='material-icons'>home</span>
+          <p className={styles.menuTitle}>home</p>
+        </Link>
+        <div className={styles.menu} onClick={()=>setOpenSearch(true)}  id={styles.searchIcon}>
+          <span className='material-icons'>search</span>
+          <p className={styles.menuTitle}>search</p>
+        </div>
+        <Link to='/signin' className={styles.menu}>
+          <span className='material-icons'>account_circle</span>
+          <p className={styles.menuTitle}>sign in</p>
+        </Link>
+        <Link to='/orders' className={styles.menu}>
+          <div className={styles.shopping}>
+            <span className='material-icons'>shopping_cart</span>
+            <p className={styles.counter}>0</p>
+          </div>
+          <p className={styles.menuTitle}>cart</p>
+        </Link>
       </div>
       
       <div className={styles.menuBurger} onClick={()=>setOpenMenu(!openMenu)}>

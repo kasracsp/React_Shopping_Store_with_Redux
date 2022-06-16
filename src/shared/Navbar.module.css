@@ -45,6 +45,7 @@
   gap: 0.2rem;
   color: black;
   text-transform: capitalize;
+  margin: .5rem;
 }
 .categories{
   width: 100vw;
@@ -59,6 +60,7 @@
   background-color: white;
   cursor: default;
   transition: .5s;
+  z-index: 9;
 }
 .categories a{
   color: black;
@@ -75,18 +77,31 @@
   left:0;
 }
 .search{
-  border: 1px solid orange;
-  border-radius: 5rem;
   padding: .5rem;
   padding-left: 1rem;
   position: relative;
   width: 100%;
-  max-width: 25rem;
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 12;
+}
+.search#show{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .searchInput{
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap:1rem;
 }
 .search:focus{
   border-color: orangered;
@@ -99,6 +114,13 @@
 .searchInput span{
   color:orangered;
 }
+.searchInput span#show{
+  display: block;
+  cursor: pointer;
+}
+.searchInput span#hidden{
+  display: none;
+}
 .suggestions{
   position: absolute;
   top: 2.5rem;
@@ -109,9 +131,10 @@
   justify-content: flex-start;
   align-items: flex-start;
   background-color: white;
-  border: 1px solid #E6E7EB;
-  border-radius: .5rem;
-  max-height: 20rem;
+  border-top: 1px solid #E6E7EB;
+  /* border: 1px solid #E6E7EB;
+  border-radius: .5rem;*/
+  max-height: 95vh;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -121,7 +144,7 @@
   justify-content: flex-start;
   align-items: center;
   gap:1rem;
-  padding: 0 1rem;
+  padding: 0.2rem 1rem;
   cursor: pointer;
 }
 .suggestion:not(:last-child){
@@ -130,6 +153,7 @@
 .suggestion img{
   width: 40px;
   height: 40px;
+  aspect-ratio: 1;
 }
 .suggestion p{
   color: black;
@@ -140,6 +164,54 @@
 }
 .suggestion:hover p{
   color: orangered;
+}
+.rigthNav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  background-color: white;
+  border-top: 1px solid #E6E7EB;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1rem .5rem 0.2rem;
+  z-index: 8;
+}
+.menu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: .2rem;
+  color: black;
+  cursor: pointer;
+}
+.menu:hover{
+  color:orangered;
+}
+.menu p{
+  font-family: 'Oswald', 'Roboto', serif;
+}
+.shopping{
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.shopping .counter{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  top: -0.8rem;
+  left: .6rem;
+  background-color: orangered;
+  color: white;
+  font-size: .7rem;
+  border-radius: 2rem;
+  font-weight: bold;
 }
 
 
@@ -208,7 +280,7 @@
     height: auto;
     display: none;
     position: absolute;
-    top: 3.5rem;
+    top: 2.2rem;
     left: 0;
     border: 1px solid #E6E7EB;
     border-top: none;
@@ -222,5 +294,65 @@
   .categories a:hover {
     box-shadow: 0px 0px 1px 1px #E6E7EB;
     color: orangered;
+  }
+  .rigthNav {
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-top:none;
+    width: fit-content;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    height: 24px;
+    margin-top: 0.3rem;
+  }
+  .menu .menuTitle {
+    display: none;
+  }
+  #home{
+    display:none;
+  }
+}
+@media screen and (min-width:768px) {
+  #searchIcon {
+    display: none;
+  }
+  .search {
+    border: 1px solid rgb(255, 153, 0);
+    border-radius: 5rem;
+    padding: .5rem;
+    padding-left: 1rem;
+    position: relative;
+    width: 100%;
+    max-width: 25rem;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    top: auto;
+    left: auto;
+    background-color: white;
+    z-index: 12;
+  }
+  .searchInput span#show {
+    display: none;
+  }
+  .suggestions {
+    border: 1px solid #E6E7EB;
+    border-radius: .5rem;
+    max-height: 25rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
+@media screen and (min-width:992px) {
+  .rigthNav{
+    min-width: 20rem;
+  }
+  .menu{
+    flex-direction: row;
+  }
+  .menu .menuTitle {
+    display: flex;
   }
 }
