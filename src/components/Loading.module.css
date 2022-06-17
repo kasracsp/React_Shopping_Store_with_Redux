@@ -1,0 +1,26 @@
+.container{
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.logoAlt{
+  width: 5rem;
+  animation: fading 2s infinite;
+}
+.logo{
+  width: 10rem;
+}
+@keyframes fading{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
