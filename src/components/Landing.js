@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { getCategories } from '../helper/functions'
+import Slider from '../shared/Slider';
 import Carrousel from './Carrousel';
 import styles from './Landing.module.css'
 
@@ -10,6 +11,9 @@ const Landing = () => {
   return (
     <div className={styles.container}>
       <Carrousel />
+      {
+        getCategories(productsState.products).map((category,index)=><Slider key={index} category={category}/>)
+      }
     </div>
   )
 }

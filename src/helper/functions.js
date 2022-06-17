@@ -12,4 +12,9 @@ const getSuggestions=(state,key)=>{
   return []
 }
 
-export {getCategories,getSuggestions}
+const getSelectedCategoryItems=(state,category)=>{
+  const categoryItems=state.filter(item=>item.category === category)
+  return categoryItems
+}
+
+export {getCategories,getSuggestions,getSelectedCategoryItems}
