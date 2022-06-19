@@ -17,4 +17,14 @@ const getSelectedCategoryItems=(state,category)=>{
   return categoryItems
 }
 
-export {getCategories,getSuggestions,getSelectedCategoryItems}
+const isInCategory=(categories,key)=>{
+  const isIn=!!categories.find(item=>item===key)
+  return isIn
+}
+
+export {
+  getCategories,
+  getSuggestions,
+  getSelectedCategoryItems,
+  isInCategory
+}

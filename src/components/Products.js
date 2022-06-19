@@ -1,19 +1,39 @@
 import React,{ useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import queryString from 'query-string'
+import styles from './Products.module.css'
+import { useSelector,useDispatch } from 'react-redux';
+import { filterProducts } from '../helper/filterFunction';
+import { filterByCategory, clearAllFilters } from '../redux/filter/filterAction';
+
+//components
+import Card from '../shared/Card'
+import FilterCard from './FilterCard';
+import SortCard from './SortCard';
 
 const Products = () => {
   const location=useLocation()
-
+  const productsState=useSelector(state=>state.productsState)
+  const filterState=useSelector(state=>state.filterState)
+  const dispatch=useDispatch()
+  
   useEffect(()=>{
+    dispatch(clearAllFilters())
     if(queryString.parse(location.search).category){
-      console.log(queryString.parse(location.search))
+      const locationCategory=queryString.parse(location.search)
+      dispatch(filterByCategory(locationCategory.category))
     }
   },[location])
 
   return (
-    <div>
-      <Link to='/'>Back</Link>
+    <div className={styles.container}>
+      <div className={styles.filterSection}>
+        <FilterCard />
+        <SortCard />
+      </div>
+      <div className={styles.productsSection}>
+        {filterProducts(productsState.products,filterState).map(product=><Card key={product.id} product={product} />)}
+      </div>
     </div>
   )
 }
