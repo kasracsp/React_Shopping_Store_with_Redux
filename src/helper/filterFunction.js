@@ -1,6 +1,5 @@
 const filterProducts=(state,filters)=>{
   let filteredData=[...state]
-  console.log(filters.rate)
 
   if(filters.category.length){
     const catList=[]
@@ -12,6 +11,8 @@ const filterProducts=(state,filters)=>{
   }
 
   filteredData=filteredData.filter(item=>item.rating.rate>=filters.rate)
+
+  filteredData=filteredData.filter(item=>item.price>=filters.minValue && item.price<=filters.maxValue)
 
   if(filters.sort==='price high'){
     filteredData.sort((a,b)=>{
@@ -29,7 +30,7 @@ const filterProducts=(state,filters)=>{
     })
   }
 
-  console.log(filteredData)
+  // console.log(filteredData)
   return filteredData
 }
 

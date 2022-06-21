@@ -1,6 +1,7 @@
 .container{
   width: 100%;
   display: grid;
+  background-color: #f2f3f7;
   grid-template-columns: 1fr;
   justify-content: center;
   align-items: start;
@@ -22,7 +23,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit ,minmax(200px,auto));
   gap:.5rem;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
   padding-bottom: 7rem;
 }

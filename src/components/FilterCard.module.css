@@ -61,7 +61,7 @@
 }
 
 .category{
-  width: 15rem;
+  width: 17rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -139,4 +139,24 @@
 }
 .ratingItems span#grade{
   color:#000;
+}
+.priceRange{
+  display: none;
+  padding-bottom: 0.5rem;
+}
+.priceRange#show {
+  display: block;
+}
+.clearAll{
+  margin:.5rem auto;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1rem;
+  text-decoration: underline;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.clearAll:hover{
+  color: #0fa9bf;
 }

@@ -2,6 +2,8 @@ const initialState={
   sort:'best rate',
   category:[],
   rate:1,
+  minValue:0,
+  maxValue:1000
 }
 const filterReducer=(state=initialState,action)=>{
   switch (action.type) {
@@ -26,11 +28,23 @@ const filterReducer=(state=initialState,action)=>{
         ...state,
         rate:action.payload
       }
+    case 'MIN_PRICE_FILTER':
+      return {
+        ...state,
+        minValue:action.payload
+      }
+    case 'MAX_PRICE_FILTER':
+      return {
+        ...state,
+        maxValue:action.payload
+      }
     case 'CLEAR_ALL_FILTERS':
       return {
         sort:'best rate',
         category:[],
         rate:1,
+        minValue:0,
+        maxValue:1000
       }
     default:
       return state

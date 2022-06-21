@@ -11,9 +11,11 @@ const Landing = () => {
   return (
     <div className={styles.container}>
       <Carrousel />
-      {
-        getCategories(productsState.products).map((category,index)=><Slider key={index} category={category}/>)
-      }
+      <div className={styles.slider}>
+        {
+          getCategories(productsState.products).map((category,index)=><Slider key={index} category={category}/>)
+        }
+      </div>
     </div>
   )
 }

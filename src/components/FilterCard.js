@@ -3,7 +3,8 @@ import styles from './FilterCard.module.css'
 import { getCategories } from '../helper/functions'
 import { useSelector, useDispatch } from 'react-redux'
 import { isInCategory } from '../helper/functions'
-import { filterByCategory, filterByRate } from '../redux/filter/filterAction'
+import { clearAllFilters, filterByCategory, filterByRate } from '../redux/filter/filterAction'
+import CustomRange from './CustomRange'
 
 const FilterCard = () => {
   const productsState=useSelector(state=>state.productsState)
@@ -54,7 +55,7 @@ const FilterCard = () => {
         </div>
         <div className={styles.category}>
           <div className={styles.categoryTitle} onClick={()=>setShowRate(!showRate)}>
-            <p>Rating</p>
+            <p>Customer Rating</p>
             <span className='material-icons'>{showRate ? "remove" : "add"}</span>
           </div>
           <div className={styles.ratingItems} id={showRate ? styles.show : ''}>
@@ -65,6 +66,18 @@ const FilterCard = () => {
               >star</span>  
             )}
           </div>
+        </div>
+        <div className={styles.category}>
+          <div className={styles.categoryTitle} onClick={()=>setShowPrice(!showPrice)}>
+            <p>Price</p>
+            <span className='material-icons'>{showPrice ? "remove" : "add"}</span>
+          </div>
+          <div className={styles.priceRange} id={showPrice ? styles.show : ''}>
+            <CustomRange />
+          </div>
+        </div>
+        <div className={styles.category}>
+          <button className={styles.clearAll} onClick={()=>dispatch(clearAllFilters())} >Clear All</button>
         </div>
       </div>
     </div>

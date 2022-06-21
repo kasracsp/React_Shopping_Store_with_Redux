@@ -43,17 +43,38 @@
   text-decoration: underline;
 }
 .price{
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .rating{
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
 }
 .rating span{
   color: gold;
+  font-size: 1rem;
 }
 .rating .rate{
   font-weight: bold;
+  font-size: 0.8rem;
+}
+@media screen and (min-width:300px) {
+  .rating {
+    display: flex;
+  }
+}
+@media screen and (min-width:567px) {
+  .price {
+    font-size: 1.2rem;
+  }
+  .rating span {
+    color: gold;
+    font-size: 1.4rem;
+  }
+
+  .rating .rate {
+    font-weight: bold;
+    font-size: 1rem;
+  }
 }

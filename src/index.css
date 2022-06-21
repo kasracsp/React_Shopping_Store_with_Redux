@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   max-width: 1600px;
   margin: 0 auto;
+  background-color: #f2f3f7;
 }
 button,a{
   font-family:'Oswald','Roboto', serif;
