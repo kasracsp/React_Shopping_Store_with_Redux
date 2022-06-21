@@ -13,6 +13,7 @@ import Products from './components/Products';
 import Navbar from './shared/Navbar';
 import Footer from './shared/Footer';
 import Loading from './components/Loading';
+import Product from './components/Product';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Routes>
                 <Route path='/' element={<Landing />} />
                 <Route path='/products' element={<Products />} />
+                <Route path='/product/:id' element={<Product />} />
                 <Route path='/*' element={<Navigate to='/' />} />
               </Routes>
               <Footer />

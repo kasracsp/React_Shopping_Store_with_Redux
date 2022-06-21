@@ -1,0 +1,12 @@
+.container{
+  width: 100%;
+  padding: 1rem;
+}
+.productSection{
+  width: 100%;
+  
+}
+.productSection img{
+  width: 300px;
+  aspect-ratio: 1;
+}
