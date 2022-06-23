@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from './Product.module.css'
 import {Magnifier,SideBySideMagnifier} from "react-image-magnifiers";
@@ -32,7 +32,35 @@ const Product = () => {
               />
             </div>
             <div className={styles.productDetails}>
-              <h5>{productData[0].title}</h5>
+              <h3 className={styles.title}>{productData[0].title}</h3>
+              <div className={styles.description}>
+                <p>product details:</p>
+                <ul>
+                  {(productData[0].description.split(', ')).map((item,index)=>
+                    <li key={index}>{item}</li>
+                  )}
+                </ul>
+
+              </div>
+              <div className={styles.priceSection}>
+                <span className={styles.price}>${productData[0].price}</span>
+                <div className={styles.buttons}>
+                  <button className={styles.firstAdd}>add to cart</button>
+                  <div className={styles.secondAdd}>
+                    <button><span className='material-icons'>delete</span></button>
+                    <button><span className='material-icons'>remove</span></button>
+                    <span>5</span>
+                    <button><span className='material-icons'>add</span></button>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.footer}>
+                <div className={styles.rating}>
+                  <span className='material-icons'>star</span>
+                  <p className={styles.rate}>({productData[0].rating.rate}) {productData[0].rating.count} reviews</p>
+                </div>
+                <Link to={`/products?category=${productData[0].category}`} className={styles.category}>{productData[0].category}</Link>
+              </div>
             </div>
           </div>
         }

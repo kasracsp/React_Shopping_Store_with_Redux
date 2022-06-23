@@ -10,14 +10,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  background-color: #fff;
+  padding: 1rem;
+  gap: 2rem;
 }
 .productThumb{
   width: 100%;
   max-width: 400px;
-  padding: 1rem;
-  background-color: #fff;
   z-index: 5;
 }
 .productThumb img{
@@ -35,7 +36,94 @@
 }
 .productDetails{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  box-shadow: 0 1px 2px 1px #00000026;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
+.title{
+  color: #000;
+}
+.description{
+  width: 100%;
+}
+.description p{
+  font-family: "Oswald",'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: capitalize;
+  margin-bottom: 0.5rem;
+}
+.description ul{
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+.description ul li{
+  color: #000;
+  list-style: disc;
+}
+.priceSection{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:1rem;
+  position: fixed;
+  bottom: 4.4rem;
+  left: 0;
+  z-index: 6;
+  background-color: #fff;
+  padding:0.5rem 1rem;
+  border-top: 1px solid #E6E7EB;
+}
+.priceSection .price{
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+
+.footer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.footer .rating{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1rem;
+}
+.footer .rating span{
+  color: gold;
+  font-size: 1.2rem;
+}
+.footer .rating .rate{
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.footer .category{
+  color: #0fa9bf;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+.footer .category:hover{
+  text-decoration: underline;
+}
+
+
+
+
+
 @media screen and (min-width:576px) {
   .productSection {
     flex-direction: row;
@@ -46,5 +134,10 @@
   }
   .productThumb .sideBySide {
     display: block;
+  }
+  .priceSection {
+    position: relative; 
+    bottom: auto;
+    left: auto;
   }
 } 
