@@ -2,4 +2,6 @@
   min-height: 100vh;
   position: relative;
   padding-bottom: 7.4rem;
+  display: grid;
+  place-content: center;
 }

@@ -14,6 +14,7 @@ import Navbar from './shared/Navbar';
 import Footer from './shared/Footer';
 import Loading from './components/Loading';
 import Product from './components/Product';
+import ErrorPage from './components/ErrorPage';
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
       productsState.loading?
           <Loading />:
             productsState.error?
-            <h1>{productsState.error}</h1>:
+            <ErrorPage error={productsState.error}/>:
             <div>
               <Navbar />
               <Routes>

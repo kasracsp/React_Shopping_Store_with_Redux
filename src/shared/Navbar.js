@@ -11,6 +11,7 @@ import logo from '../assets/logo.png'
 
 const Navbar = () => {
   const productsState=useSelector(state=>state.productsState)
+  const ordersState=useSelector(state=>state.ordersState)
   const [openMenu,setOpenMenu]=useState(false)
   const [search,setSearch]=useState('')
   const [suggestionList,setSuggestionList]=useState([])
@@ -94,7 +95,7 @@ const Navbar = () => {
         <Link to='/orders' className={styles.menu}>
           <div className={styles.shopping}>
             <span className='material-icons'>shopping_cart</span>
-            <p className={styles.counter}>0</p>
+            <p className={styles.counter}>{ordersState.totalItems}</p>
           </div>
           <p className={styles.menuTitle}>cart</p>
         </Link>

@@ -22,9 +22,25 @@ const isInCategory=(categories,key)=>{
   return isIn
 }
 
+const isInOrders=(orders,key)=>{
+  const isInOrder=!!orders.find(item=>item.id===key)
+  return isInOrder
+}
+
+const calcQuantity=(orders,key)=>{
+  const indexO=orders.findIndex(item=>item.id === key)
+  if(indexO>-1){
+    return orders[indexO].quantity
+  }else{
+    return false
+  }
+}
+
 export {
   getCategories,
   getSuggestions,
   getSelectedCategoryItems,
-  isInCategory
+  isInCategory,
+  isInOrders,
+  calcQuantity,
 }

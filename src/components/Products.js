@@ -23,6 +23,9 @@ const Products = () => {
       const locationCategory=queryString.parse(location.search)
       dispatch(filterByCategory(locationCategory.category))
     }
+    window.scrollTo({
+      top: 0,
+    })
   },[location])
 
   return (

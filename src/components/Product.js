@@ -1,13 +1,17 @@
 import React,{useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import styles from './Product.module.css'
 import {Magnifier,SideBySideMagnifier} from "react-image-magnifiers";
 import Slider from '../shared/Slider';
+import { useSelector, useDispatch } from 'react-redux'
+import { isInOrders, calcQuantity } from '../helper/functions';
+import { addItem, removeItem, increaseItem, decreaseItem } from '../redux/orders/ordersAction';
 
 const Product = () => {
   const params=useParams()
   const productsState=useSelector(state=>state.productsState)
+  const ordersState=useSelector(state=>state.ordersState)
+  const dispatch=useDispatch()
 
   const productData=productsState.products.filter(item=>item.id === Number(params.id))
 
@@ -53,13 +57,15 @@ const Product = () => {
               <div className={styles.priceSection}>
                 <span className={styles.price}>${productData[0].price}</span>
                 <div className={styles.buttons}>
-                  {/* <button className={styles.firstAdd}>add to cart</button> */}
-                  <div className={styles.secondAdd}>
-                    {/* <button className={styles.delete}><span className='material-icons'>delete</span></button> */}
-                    <button className={styles.remove}><span className='material-icons'>remove</span></button>
-                    <span className={styles.quentity}>5 added</span>
-                    <button className={styles.add}><span className='material-icons'>add</span></button>
-                  </div>
+                  {isInOrders(ordersState.orders,productData[0].id)?
+                    <div className={styles.secondAdd}>
+                      {calcQuantity(ordersState.orders,productData[0].id)===1 &&<button className={styles.delete} onClick={()=>dispatch(removeItem(productData[0]))}><span className='material-icons'>delete</span></button>}
+                      {calcQuantity(ordersState.orders,productData[0].id)>1 && <button className={styles.remove} onClick={()=>dispatch(decreaseItem(productData[0]))}><span className='material-icons'>remove</span></button>}
+                      <span className={styles.quentity}>{calcQuantity(ordersState.orders,productData[0].id)} added</span>
+                      <button className={styles.add} onClick={()=>dispatch(increaseItem(productData[0]))}><span className='material-icons'>add</span></button>
+                    </div>:
+                    <button className={styles.firstAdd} onClick={()=>dispatch(addItem(productData[0]))}>add to cart</button>
+                  }
                 </div>
               </div>
               <div className={styles.footer}>
