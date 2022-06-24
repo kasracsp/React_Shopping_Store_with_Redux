@@ -73,6 +73,10 @@
 .description ul li{
   color: #000;
   list-style: disc;
+  text-transform: lowercase;
+}
+.description ul li::first-letter{
+  text-transform: uppercase;
 }
 .priceSection{
   width: 100%;

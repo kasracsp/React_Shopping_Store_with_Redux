@@ -1,9 +1,8 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from './Product.module.css'
 import {Magnifier,SideBySideMagnifier} from "react-image-magnifiers";
-import { getSelectedCategoryItems } from '../helper/functions';
 import Slider from '../shared/Slider';
 
 const Product = () => {
@@ -11,6 +10,12 @@ const Product = () => {
   const productsState=useSelector(state=>state.productsState)
 
   const productData=productsState.products.filter(item=>item.id === Number(params.id))
+
+  useEffect(()=>{
+    window.scrollTo({
+      top:0
+    })
+  },[params])
 
   return (
     <>
