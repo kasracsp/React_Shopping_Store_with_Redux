@@ -13,7 +13,7 @@ const Landing = () => {
       <Carrousel />
       <div className={styles.slider}>
         {
-          getCategories(productsState.products).map((category,index)=><Slider key={index} category={category}/>)
+          getCategories(productsState.products).map((category,index)=><Slider key={index} category={category} title={category}/>)
         }
       </div>
     </div>

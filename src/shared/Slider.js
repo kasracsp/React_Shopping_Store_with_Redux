@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-const Slider = ({category}) => {
+const Slider = ({category,title}) => {
   const productsState=useSelector(state=>state.productsState)
   const [mySwiper, setMySwiper] = useState({});
   const [isEnd,setIsEnd]=useState(false)
@@ -18,7 +18,7 @@ const Slider = ({category}) => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.headerTitle}>{category}</h2>
+        <h2 className={styles.headerTitle}>{title}</h2>
         {!isEnd &&
           <div className={styles.buttons}>
             <button className={styles.swipperPrev} onClick={() => mySwiper.slidePrev()}>

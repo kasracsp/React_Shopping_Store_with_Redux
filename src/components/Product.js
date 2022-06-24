@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import styles from './Product.module.css'
 import {Magnifier,SideBySideMagnifier} from "react-image-magnifiers";
+import { getSelectedCategoryItems } from '../helper/functions';
+import Slider from '../shared/Slider';
 
 const Product = () => {
   const params=useParams()
@@ -11,9 +13,10 @@ const Product = () => {
   const productData=productsState.products.filter(item=>item.id === Number(params.id))
 
   return (
-    <div className={styles.container}>
-        {
-          productData.length &&
+    <>
+    {
+      productData.length &&
+        <div className={styles.container}>
           <div className={styles.productSection}>
             <div className={styles.productThumb}>
               <Magnifier
@@ -45,12 +48,12 @@ const Product = () => {
               <div className={styles.priceSection}>
                 <span className={styles.price}>${productData[0].price}</span>
                 <div className={styles.buttons}>
-                  <button className={styles.firstAdd}>add to cart</button>
+                  {/* <button className={styles.firstAdd}>add to cart</button> */}
                   <div className={styles.secondAdd}>
-                    <button><span className='material-icons'>delete</span></button>
-                    <button><span className='material-icons'>remove</span></button>
-                    <span>5</span>
-                    <button><span className='material-icons'>add</span></button>
+                    {/* <button className={styles.delete}><span className='material-icons'>delete</span></button> */}
+                    <button className={styles.remove}><span className='material-icons'>remove</span></button>
+                    <span className={styles.quentity}>5 added</span>
+                    <button className={styles.add}><span className='material-icons'>add</span></button>
                   </div>
                 </div>
               </div>
@@ -63,8 +66,12 @@ const Product = () => {
               </div>
             </div>
           </div>
-        }
-    </div>
+          <div className={styles.sameProducts}>
+            <Slider category={productData[0].category} title='you may also like'/>
+          </div>
+        </div>
+      }
+    </>
   )
 }
 
