@@ -16,11 +16,16 @@
   padding: 1rem;
   padding-bottom: 0;
   aspect-ratio: 1;
+  overflow: hidden;
 }
 .thumb img{
   width: 100%;
   aspect-ratio: 1;
+  transition: .4s;
 } 
+.container:hover .thumb img{
+  transform: scale(1.03);
+}
 .title{
   color: #000;
   padding: 0 1rem;

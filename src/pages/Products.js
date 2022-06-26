@@ -8,8 +8,8 @@ import { filterByCategory, clearAllFilters } from '../redux/filter/filterAction'
 
 //components
 import Card from '../shared/Card'
-import FilterCard from './FilterCard';
-import SortCard from './SortCard';
+import FilterCard from '../components/FilterCard'
+import SortCard from '../components/SortCard';
 
 const Products = () => {
   const location=useLocation()

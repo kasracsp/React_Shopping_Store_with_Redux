@@ -86,6 +86,7 @@
   font-family:"Oswald",'Roboto', serif;
   text-transform: capitalize;
   font-size: 1.1rem;
+  margin: 0;
 }
 .categoryItems{
   width: 100%;

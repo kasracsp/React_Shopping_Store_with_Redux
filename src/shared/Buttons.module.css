@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  background-color: transparent;
+  color: #000;
+  padding: .3rem;
+  border-radius: 62.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid #777;
+}
+
+.container button {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.container button:hover span,
+.container button:active span {
+  background-color: orangered;
+  color: #fff;
+}
+
+.container button span {
+  font-size: 1rem;
+  padding: 0.3rem;
+  transition: 0.2s;
+  border-radius: 50%;
+  color: #000;
+  pointer-events: none;
+}
+.secondAdd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  background-color: orangered;
+  color: #fff;
+  padding: .3rem;
+  border-radius: 62.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.secondAdd button {
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 50%;
+}
+
+.secondAdd button:hover,
+.secondAdd button:active {
+  background-color: rgb(189, 50, 0);
+}
+
+.secondAdd button span {
+  padding: 0.3rem;
+  color: #fff;
+}

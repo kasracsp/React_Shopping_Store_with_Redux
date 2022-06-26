@@ -4,8 +4,9 @@ import styles from './Product.module.css'
 import {Magnifier,SideBySideMagnifier} from "react-image-magnifiers";
 import Slider from '../shared/Slider';
 import { useSelector, useDispatch } from 'react-redux'
-import { isInOrders, calcQuantity } from '../helper/functions';
-import { addItem, removeItem, increaseItem, decreaseItem } from '../redux/orders/ordersAction';
+import { isInOrders } from '../helper/functions';
+import { addItem } from '../redux/orders/ordersAction';
+import Buttons from '../shared/Buttons';
 
 const Product = () => {
   const params=useParams()
@@ -58,12 +59,7 @@ const Product = () => {
                 <span className={styles.price}>${productData[0].price}</span>
                 <div className={styles.buttons}>
                   {isInOrders(ordersState.orders,productData[0].id)?
-                    <div className={styles.secondAdd}>
-                      {calcQuantity(ordersState.orders,productData[0].id)===1 &&<button className={styles.delete} onClick={()=>dispatch(removeItem(productData[0]))}><span className='material-icons'>delete</span></button>}
-                      {calcQuantity(ordersState.orders,productData[0].id)>1 && <button className={styles.remove} onClick={()=>dispatch(decreaseItem(productData[0]))}><span className='material-icons'>remove</span></button>}
-                      <span className={styles.quentity}>{calcQuantity(ordersState.orders,productData[0].id)} added</span>
-                      <button className={styles.add} onClick={()=>dispatch(increaseItem(productData[0]))}><span className='material-icons'>add</span></button>
-                    </div>:
+                    <Buttons product={productData[0]} isInProduct={true}/>:
                     <button className={styles.firstAdd} onClick={()=>dispatch(addItem(productData[0]))}>add to cart</button>
                   }
                 </div>

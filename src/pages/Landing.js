@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { getCategories } from '../helper/functions'
 import Slider from '../shared/Slider';
-import Carrousel from './Carrousel';
+import Carrousel from '../components/Carrousel';
 import styles from './Landing.module.css'
 
 const Landing = () => {

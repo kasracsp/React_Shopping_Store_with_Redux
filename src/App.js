@@ -9,14 +9,14 @@ import fetchGeolocation from './redux/geolocation/geolocationAction';
 import { setOrders } from './redux/orders/ordersAction';
 
 //components
-import Landing from './components/Landing';
-import Products from './components/Products';
+import Landing from './pages/Landing';
+import Products from './pages/Products';
 import Navbar from './shared/Navbar';
 import Footer from './shared/Footer';
-import Loading from './components/Loading';
-import Product from './components/Product';
-import ErrorPage from './components/ErrorPage';
-import Purchase from './components/Purchase';
+import Loading from './pages/Loading';
+import Product from './pages/Product';
+import ErrorPage from './pages/ErrorPage';
+import Purchase from './pages/Purchase';
 
 
 function App() {

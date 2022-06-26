@@ -1,4 +1,5 @@
 import React from 'react'
+import OrderItem from '../components/OrderItem'
 import EmptyCart from '../assets/emptyCart.jpg'
 import { Stack } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
@@ -25,12 +26,15 @@ const PreOrders = ({show,handler}) => {
         </Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body>
-        <Stack gap={3}>
+        <Stack>
           {ordersState.totalItems ?
             <div className='offcanvas-exist'>
-              <Link to='/purchase' onClick={handler}>Purchase Now</Link>
+              <Link to='/purchase' onClick={handler}className='linkToProducts'>Purchase Now</Link>
               {
-                ordersState.orders.map(item=><p key={item.id}>{item.title}</p>)
+                ordersState.totalItems &&
+                ordersState.orders.map(item=>
+                  <OrderItem key={item.id} product={item}/>
+                )
               }
             </div>:
             <div className='offcanvas-empty'>

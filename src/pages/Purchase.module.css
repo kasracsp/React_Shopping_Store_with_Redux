@@ -1,0 +1,110 @@
+.container{
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas: 
+  'orders'
+  'totals'
+  ;
+  padding-bottom: 7rem;
+  gap: 1rem;
+  justify-content: start;
+  align-items: start;
+}
+.orders{
+  display: flex;
+  grid-area: orders;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: 0 1px 2px 1px #00000026;
+  border-radius: .5rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+.totals{
+  display: flex;
+  grid-area: totals;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: 0 1px 2px 1px #00000026;
+  border-radius: .5rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+.section{
+  width: 100%;
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom: 1px solid #E6E7EB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.section:first-child{
+  position: fixed;
+  bottom: 4.4rem;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  border-top: 1px solid #E6E7EB;
+}
+.checkout{
+  width: 100%;
+  background-color: orangered;
+  color: #fff;
+  font-family: 'Oswald','Roboto',serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 62.5rem;
+}
+.checkout:hover{
+  background-color: rgb(226, 60, 0);
+}
+.section h4{
+  font-family: 'Oswald','Roboto',serif;
+  font-weight: bold;
+}
+.section h4 span{
+  font-size: 1rem;
+}
+.clearAll{
+  text-align: center;
+  margin: 0.5rem auto;
+  color:#0fa9bf;
+  background-color: transparent;
+  font-size: 1.1rem;
+  font-family: 'Oswald', 'Roboto', serif;
+  text-decoration: underline;
+}
+.clearAll:hover{
+  text-decoration: none;
+}
+
+@media screen and (min-width:576px) {
+  .section:first-child {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    z-index: 6;
+    border-top: none;
+  }
+}
+@media screen and (min-width:768px) {
+  .container{
+    grid-template-columns: repeat(3,1fr);
+    grid-template-areas:
+    'orders orders totals'
+    ;
+      grid-template-rows: 1fr;
+  }
+}
+@media screen and (min-width:1200px) {
+  .container {
+    padding: 2rem 3rem;
+  }
+}
