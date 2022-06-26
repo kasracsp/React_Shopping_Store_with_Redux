@@ -5,11 +5,12 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Offcanvas } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './PreOrders.scss'
 
 const PreOrders = ({show,handler}) => {
   const ordersState=useSelector(state=>state.ordersState)
   return (
-    <Offcanvas show={show} onHide={handler} placement='end'>
+    <Offcanvas show={show} onHide={handler} placement='end' className='preOrder_container'>
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>
           {
@@ -26,17 +27,16 @@ const PreOrders = ({show,handler}) => {
       <Offcanvas.Body>
         <Stack gap={3}>
           {ordersState.totalItems ?
-            <div>
+            <div className='offcanvas-exist'>
               <Link to='/purchase' onClick={handler}>Purchase Now</Link>
               {
                 ordersState.orders.map(item=><p key={item.id}>{item.title}</p>)
               }
             </div>:
-            <div>
+            <div className='offcanvas-empty'>
               <img src={EmptyCart} alt="emptyCart" />
-              <h2>Time to start shopping!</h2>
-              <h3>Your cart is empty</h3>
-              <Link to='/products'>Shop rigth now</Link>
+              <h3>Time to start shopping!</h3>
+              <Link to='/products' onClick={handler}>Shop rigth now</Link>
             </div>
           }
         </Stack>

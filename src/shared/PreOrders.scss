@@ -1,0 +1,71 @@
+.offcanvas{
+  .offcanvas-header{
+    border-bottom: 1px solid #E6E7EB;
+
+    .offcanvas-title{
+      small{
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .offcanvas-body{
+    width: 100%;
+
+    .offcanvas-exist{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      a{
+        width: 80%;
+        text-decoration: none;
+        background-color: orangered;
+        color: #fff;
+        padding: 0.5rem;
+        text-align: center;
+        border-radius: 0.2rem;
+        font-weight: bold;
+        margin: 0 auto 1rem;
+
+        &:hover{
+          background-color: rgb(228, 61, 0);
+        }
+      }
+    }
+
+    .offcanvas-empty {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5remrem;
+
+      img{
+        width: 15rem;
+        aspect-ratio: 1;
+      }
+
+
+
+      a {
+        width: 80%;
+        text-transform: capitalize;
+        color: orangered;
+        padding: 0.5rem;
+        text-align: center;
+        border-radius: 0.2rem;
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin: 0 auto 1rem;
+
+        &:hover {
+          color: rgb(228, 61, 0);
+        }
+      }
+    }
+  }
+}
