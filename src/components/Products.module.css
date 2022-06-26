@@ -23,7 +23,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit ,minmax(200px,auto));
   gap:.5rem;
-  justify-content: start;
+  justify-content: center;
   align-items: start;
   padding-bottom: 7rem;
 }

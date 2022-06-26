@@ -47,6 +47,9 @@
   text-transform: capitalize;
   margin: .5rem;
 }
+.categoriesTitle p{
+  margin: 0;
+}
 .categories{
   width: 100vw;
   height: 100vh;
@@ -66,6 +69,7 @@
   color: black;
   padding: 0.5rem 1rem;
   text-transform: capitalize;
+  text-decoration: none;
   font-size: 1.3rem;
   margin: 0;
   cursor: pointer;
@@ -132,8 +136,6 @@
   align-items: flex-start;
   background-color: white;
   border-top: 1px solid #E6E7EB;
-  /* border: 1px solid #E6E7EB;
-  border-radius: .5rem;*/
   max-height: 95vh;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -143,6 +145,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  text-decoration: none;
   gap:1rem;
   padding: 0.2rem 1rem;
   cursor: pointer;
@@ -161,6 +164,7 @@
   text-overflow: ellipsis;
   word-break: break-all;
   white-space: nowrap;
+  margin: 0;
 }
 .suggestion:hover p{
   color: orangered;
@@ -187,12 +191,15 @@
   gap: .2rem;
   color: black;
   cursor: pointer;
+  text-decoration: none;
+  user-select: none;
 }
 .menu:hover{
   color:orangered;
 }
 .menu p{
   font-family: 'Oswald', 'Roboto', serif;
+  margin: 0;
 }
 .shopping{
   position: relative;
@@ -213,8 +220,6 @@
   border-radius: 2rem;
   font-weight: bold;
 }
-
-
 .menuBurger{
   width: 24px;
   height: 17px;

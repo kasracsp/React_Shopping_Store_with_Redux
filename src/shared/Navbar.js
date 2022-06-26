@@ -8,6 +8,7 @@ import styles from './Navbar.module.css'
 
 //assets
 import logo from '../assets/logo.png'
+import PreOrders from './PreOrders'
 
 const Navbar = () => {
   const productsState=useSelector(state=>state.productsState)
@@ -17,6 +18,7 @@ const Navbar = () => {
   const [suggestionList,setSuggestionList]=useState([])
   const [openSearch,setOpenSearch]=useState(false)
   const searchRef=useRef()
+  const [showPreOrders,setShowPreOrders]=useState(false)
 
   useEffect(()=>{
     let handler=(event)=>{
@@ -92,19 +94,21 @@ const Navbar = () => {
           <span className='material-icons'>account_circle</span>
           <p className={styles.menuTitle}>sign in</p>
         </Link>
-        <Link to='/orders' className={styles.menu}>
+        <div className={styles.menu} onClick={()=>setShowPreOrders(!showPreOrders)}>
           <div className={styles.shopping}>
             <span className='material-icons'>shopping_cart</span>
             <p className={styles.counter}>{ordersState.totalItems}</p>
           </div>
           <p className={styles.menuTitle}>cart</p>
-        </Link>
+        </div>
       </div>
       
       <div className={styles.menuBurger} onClick={()=>setOpenMenu(!openMenu)}>
         <div className={styles.burger}  id={openMenu ? styles.show : ''}>
         </div>
       </div>
+
+      <PreOrders show={showPreOrders} handler={()=>setShowPreOrders(!showPreOrders)}/>
     </div>
   )
 }

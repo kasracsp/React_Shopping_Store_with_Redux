@@ -16,6 +16,7 @@ body {
 }
 button,a{
   font-family:'Oswald','Roboto', serif;
+  user-select: none;
 }
 a{
   text-decoration: none;

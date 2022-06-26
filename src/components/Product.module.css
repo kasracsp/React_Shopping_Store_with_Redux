@@ -106,7 +106,7 @@
   border: none;
   outline: none;
   background-color: orangered;
-  padding: 0.5rem 2rem;
+  padding: 0.6rem 2rem;
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
@@ -162,6 +162,7 @@
 .footer .rating .rate{
   font-weight: bold;
   font-size: 0.8rem;
+  margin: 0;
 }
 .footer .category{
   color: #0fa9bf;

@@ -13,6 +13,8 @@
 .headerTitle{
   text-transform: capitalize;
   position: relative;
+  font-family: 'Oswald', 'Roboto', serif;
+  font-weight: bold;
 }
 .headerTitle::before{
   content: '';
@@ -51,8 +53,10 @@
   margin: 0.1rem 0.5rem;
   color: #0fa9bf;
   text-transform: capitalize;
+  text-decoration: none;
 }
 .more:hover{
+  color: #0fa9bf;
   border-bottom: 1px solid #0fa9bf;
 }
 @media screen and (min-width:576px) {

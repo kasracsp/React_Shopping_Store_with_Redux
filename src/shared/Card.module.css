@@ -27,6 +27,7 @@
   width: 100%;
   font-family: 'Roboto','Oswald', serif ;
   overflow: hidden;
+  text-decoration: none;
   text-overflow: ellipsis;
   word-break: break-all;
   white-space: nowrap;
@@ -58,6 +59,7 @@
 .rating .rate{
   font-weight: bold;
   font-size: 0.8rem;
+  margin: 0;
 }
 @media screen and (min-width:300px) {
   .rating {

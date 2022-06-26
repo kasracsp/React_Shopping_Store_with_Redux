@@ -17,6 +17,12 @@ const sumItems=(state)=>{
 
 const ordersReducer=(state=initialState,action)=>{
   switch (action.type) {
+    case 'SET_INITIAL_ORDERS':
+      return {
+        ...state,
+        orders:[...action.payload],
+        ...sumItems(action.payload),
+      }
     case 'ADD_ITEM':
       if(!state.orders.find(item=>item.id === action.payload.id)){
         state.orders.push({
@@ -24,6 +30,7 @@ const ordersReducer=(state=initialState,action)=>{
           quantity:1
         })
       }
+      window.localStorage.setItem('orders',JSON.stringify(state.orders))
       return {
         ...state,
         orders:[...state.orders],
@@ -32,6 +39,7 @@ const ordersReducer=(state=initialState,action)=>{
       }
     case 'REMOVE_ITEM':
       const filteredOrders=state.orders.filter(item=>item.id !== action.payload.id)
+      window.localStorage.setItem('orders',JSON.stringify(filteredOrders))
       return {
         ...state,
         orders:[...filteredOrders],
@@ -42,6 +50,7 @@ const ordersReducer=(state=initialState,action)=>{
       if(indexI>-1){
         state.orders[indexI].quantity++
       }
+      window.localStorage.setItem('orders',JSON.stringify(state.orders))
       return {
         ...state,
         ...sumItems(state.orders)
@@ -51,11 +60,13 @@ const ordersReducer=(state=initialState,action)=>{
       if(indexD>-1){
         state.orders[indexD].quantity--
       }
+      window.localStorage.setItem('orders',JSON.stringify(state.orders))
       return {
         ...state,
         ...sumItems(state.orders)
       }
     case 'CLEAR_ITEM':
+      window.localStorage.removeItem('orders')
       return {
         orders:[],
         checkout:false,
@@ -63,6 +74,7 @@ const ordersReducer=(state=initialState,action)=>{
         totalPrice:0
       }
     case 'CHECKOUT_ITEM':
+      window.localStorage.removeItem('orders')
       return {
         orders:[],
         checkout:true,

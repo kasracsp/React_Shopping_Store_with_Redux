@@ -10,6 +10,9 @@
   font-family:"Oswald","Roboto", serif;
   margin: 1rem 0;
 }
+.allFiltersTitle p{
+  margin: 0;
+}
 .allFiltersTitle#show{
   color: orangered;
 }

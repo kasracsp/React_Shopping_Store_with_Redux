@@ -1,3 +1,9 @@
+const setInitialOrders=orders=>{
+  return {
+    type:'SET_INITIAL_ORDERS',
+    payload:orders
+  }
+}
 const addItem=product=>{
   return {
     type:'ADD_ITEM',
@@ -32,6 +38,14 @@ const checkoutItem=()=>{
     type:'CHECKOUT_ITEM',
   }
 }
+const setOrders=()=>{
+  return (dispatch)=>{
+    const initialOrdersState=JSON.parse(window.localStorage.getItem('orders'))
+    if(initialOrdersState){
+      dispatch(setInitialOrders(initialOrdersState))
+    }
+  }
+}
 
 export {
   addItem,
@@ -39,5 +53,6 @@ export {
   increaseItem,
   decreaseItem,
   clearItem,
-  checkoutItem
+  checkoutItem,
+  setOrders
 }
