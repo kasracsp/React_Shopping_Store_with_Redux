@@ -1,5 +1,6 @@
 .allFilters{
   position: relative;
+  z-index: 2;
 }
 .allFiltersTitle{
   display: flex;

@@ -74,7 +74,7 @@ const Product = () => {
             </div>
           </div>
           <div className={styles.sameProducts}>
-            <Slider category={productData[0].category} title='you may also like'/>
+            <Slider category={productData[0].category} title='you may also like' isShow={true} />
           </div>
         </div>
       }

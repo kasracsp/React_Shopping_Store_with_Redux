@@ -66,6 +66,29 @@
   font-size: 0.8rem;
   margin: 0;
 }
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+.firstAdd {
+  border: none;
+  outline: none;
+  background-color: orangered;
+  padding: 0.4rem 2rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  cursor: pointer;
+  border-radius: 62.5rem;
+}
+.firstAdd:hover {
+  background-color: rgb(226, 60, 0);
+}
+
 @media screen and (min-width:300px) {
   .rating {
     display: flex;

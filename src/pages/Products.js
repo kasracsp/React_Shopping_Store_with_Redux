@@ -35,7 +35,7 @@ const Products = () => {
         <SortCard />
       </div>
       <div className={styles.productsSection}>
-        {filterProducts(productsState.products,filterState).map(product=><Card key={product.id} product={product} />)}
+        {filterProducts(productsState.products,filterState).map(product=><Card key={product.id} product={product} isShow={true}/>)}
       </div>
     </div>
   )

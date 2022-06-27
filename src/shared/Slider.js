@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-const Slider = ({category,title}) => {
+const Slider = ({category,title,isShow}) => {
   const productsState=useSelector(state=>state.productsState)
   const [mySwiper, setMySwiper] = useState({});
   const [isEnd,setIsEnd]=useState(false)
@@ -52,7 +52,7 @@ const Slider = ({category,title}) => {
         {
           categoryItems.map(item=>
           <SwiperSlide key={item.id} >
-            <Card product={item}/>
+            <Card product={item} isShow={isShow}/>
           </SwiperSlide>
           )
         }

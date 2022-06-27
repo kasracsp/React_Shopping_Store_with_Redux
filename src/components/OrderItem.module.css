@@ -5,6 +5,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: .5rem;
+  background-color: #fff;
   padding: 1rem;
 }
 .container:not(:last-child){
@@ -51,6 +52,7 @@
   text-decoration: underline;
   color: #000;
   transition: 0.2s;
+  cursor: pointer;
 }
 .removeItem:hover{
   color: #0fa9bf;

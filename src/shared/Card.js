@@ -1,9 +1,15 @@
 import React from 'react'
 import styles from './Card.module.css'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { addItem } from '../redux/orders/ordersAction'
+import { isInOrders } from '../helper/functions'
+import Buttons from './Buttons'
 
-const Card = ({product}) => {
+const Card = ({product,isShow}) => {
   const {id,title,image,price,rating}=product
+  const ordersState=useSelector(state=>state.ordersState)
+  const dispatch=useDispatch()
 
   return (
     <div className={styles.container}>
@@ -18,6 +24,14 @@ const Card = ({product}) => {
           <p className={styles.rate}>{rating.rate}</p>
         </div>
       </div>
+      {isShow &&
+        <div className={styles.buttons}>
+          {isInOrders(ordersState.orders,product.id)?
+            <Buttons product={product}/>:
+            <button className={styles.firstAdd} onClick={()=>dispatch(addItem(product))}>add to cart</button>
+          }
+        </div>
+      }
     </div>
   )
 }

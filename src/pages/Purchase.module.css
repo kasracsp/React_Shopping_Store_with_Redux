@@ -45,6 +45,7 @@
 }
 .section:first-child{
   position: fixed;
+  height: 4rem;
   bottom: 4.4rem;
   left: 0;
   right: 0;
@@ -60,6 +61,7 @@
   font-size: 1.2rem;
   padding: 0.5rem;
   border-radius: 62.5rem;
+  cursor: pointer;
 }
 .checkout:hover{
   background-color: rgb(226, 60, 0);
@@ -79,6 +81,7 @@
   font-size: 1.1rem;
   font-family: 'Oswald', 'Roboto', serif;
   text-decoration: underline;
+  cursor: pointer;
 }
 .clearAll:hover{
   text-decoration: none;

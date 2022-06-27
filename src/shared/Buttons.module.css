@@ -47,16 +47,18 @@
 .secondAdd button {
   background-color: transparent;
   cursor: pointer;
-  transition: 0.2s;
-  border-radius: 50%;
 }
 
-.secondAdd button:hover,
-.secondAdd button:active {
+.secondAdd button:hover span,
+.secondAdd button:active span{
   background-color: rgb(189, 50, 0);
 }
 
 .secondAdd button span {
+  font-size: 1rem;
   padding: 0.3rem;
+  transition: 0.2s;
+  border-radius: 50%;
   color: #fff;
+  pointer-events: none;
 }
