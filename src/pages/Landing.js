@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { getCategories } from '../helper/functions'
 import Slider from '../shared/Slider';
@@ -7,6 +7,12 @@ import styles from './Landing.module.css'
 
 const Landing = () => {
   const productsState=useSelector(state=>state.productsState)
+
+  useEffect(()=>{
+    window.scrollTo({
+      top:0
+    })
+  },[])
 
   return (
     <div className={styles.container}>

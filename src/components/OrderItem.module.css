@@ -39,11 +39,11 @@
   font-size: 1.2rem;
 }
 .downDetail{
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
+  margin-left: auto;
 }
 .removeItem{
   border: none;
@@ -53,6 +53,7 @@
   color: #000;
   transition: 0.2s;
   cursor: pointer;
+  font-size: 1rem;
 }
 .removeItem:hover{
   color: #0fa9bf;

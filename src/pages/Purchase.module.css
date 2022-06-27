@@ -43,7 +43,7 @@
   align-items: center;
   gap: 1rem;
 }
-.section:first-child{
+.section:nth-child(2){
   position: fixed;
   height: 4rem;
   bottom: 4.4rem;
@@ -66,11 +66,11 @@
 .checkout:hover{
   background-color: rgb(226, 60, 0);
 }
-.section h4{
+.section h2{
   font-family: 'Oswald','Roboto',serif;
   font-weight: bold;
 }
-.section h4 span{
+.section h2 span{
   font-size: 1rem;
 }
 .clearAll{
@@ -86,15 +86,66 @@
 .clearAll:hover{
   text-decoration: none;
 }
+.emptyWrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0 1px 2px 1px #00000026;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+.emptyContainer img{
+  width: 15rem;
+  aspect-ratio: 1;
+}
+.emptyContainer a {
+  position: fixed;
+  height: 4rem;
+  bottom: 4.4rem;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  text-transform: capitalize;
+  color: orangered;
+  background-color: #fff;
+  text-align: center;
+  line-height: 4rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.emptyContainer  a:hover {
+  text-decoration: none;
+}
 
 @media screen and (min-width:576px) {
-  .section:first-child {
+  .section:nth-child(2) {
     position: relative;
     bottom: auto;
     left: auto;
     right: auto;
     z-index: 6;
     border-top: none;
+  }
+  .emptyContainer a{
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    height: auto;
+    line-height: normal;
   }
 }
 @media screen and (min-width:768px) {
