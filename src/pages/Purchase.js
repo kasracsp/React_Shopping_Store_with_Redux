@@ -57,7 +57,7 @@ const Purchase = () => {
         <div className={styles.emptyWrapper}>
           <div className={styles.emptyContainer}>
             <img src={CheckoutImage} alt="emptyCart" />
-            <h2>Checkout Successfully</h2>
+            <h2>Checkout Successfully!</h2>
             <Link to='/products'>Buy More</Link>
           </div>
         </div>

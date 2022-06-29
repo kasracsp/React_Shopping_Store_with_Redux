@@ -8,6 +8,9 @@ import fetchProducts from './redux/products/productsAction';
 import fetchGeolocation from './redux/geolocation/geolocationAction';
 import { setOrders } from './redux/orders/ordersAction';
 
+//context
+import AuthContextProvider from './context/AuthContextProvider';
+
 //components
 import Landing from './pages/Landing';
 import Products from './pages/Products';
@@ -17,6 +20,7 @@ import Loading from './pages/Loading';
 import Product from './pages/Product';
 import ErrorPage from './pages/ErrorPage';
 import Purchase from './pages/Purchase';
+import SignIn from './pages/SignIn';
 
 
 function App() {
@@ -34,10 +38,11 @@ function App() {
     <div className="App">
       {
       productsState.loading?
-          <Loading />:
-            productsState.error?
-            <ErrorPage error={productsState.error}/>:
-            <div>
+        <Loading />:
+          productsState.error?
+          <ErrorPage error={productsState.error}/>:
+          <div>
+            <AuthContextProvider>
               <Navbar />
               <Routes>
                 <Route path='/' element={<Landing />} />
@@ -45,9 +50,11 @@ function App() {
                 <Route path='/product/:id' element={<Product />} />
                 <Route path='/*' element={<Navigate to='/' />} />
                 <Route path='/purchase' element={<Purchase />} />
+                <Route path='/signin' element={<SignIn />} />
               </Routes>
               <Footer />
-            </div>
+            </AuthContextProvider>
+          </div>
       }
     </div>  
   );
