@@ -111,17 +111,12 @@
   aspect-ratio: 1;
 }
 .emptyContainer a {
-  position: fixed;
-  height: 4rem;
-  bottom: 4.4rem;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 6;
   text-transform: capitalize;
   color: orangered;
   background-color: #fff;
   text-align: center;
-  line-height: 4rem;
   font-size: 1.4rem;
   font-weight: bold;
   text-decoration: underline;
@@ -138,14 +133,6 @@
     right: auto;
     z-index: 6;
     border-top: none;
-  }
-  .emptyContainer a{
-    position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    height: auto;
-    line-height: normal;
   }
 }
 @media screen and (min-width:768px) {

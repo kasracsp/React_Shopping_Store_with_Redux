@@ -193,6 +193,38 @@
   cursor: pointer;
   text-decoration: none;
   user-select: none;
+  position: relative;
+}
+.menu .userOptions{
+  position: absolute;
+  z-index: 4;
+  top: -5rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #fff;
+  position: absolute;
+  border: 1px solid #E6E7EB;
+  border-radius: 0.2rem;
+}
+.menu .userOptions .userOption{
+  position: relative;
+  width: 5rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+}
+.menu .userOptions .userOption:hover{
+  color: orangered;
+}
+.menu .userOptions .userOption:not(:last-child) {
+  border-bottom: 1px solid #E6E7EB;
 }
 .menu:hover{
   color:orangered;
@@ -200,6 +232,11 @@
 .menu p{
   font-family: 'Oswald', 'Roboto', serif;
   margin: 0;
+}
+.menu img{
+  width: 24px;
+  aspect-ratio: 1;
+  border-radius: 50%;
 }
 .shopping{
   position: relative;
