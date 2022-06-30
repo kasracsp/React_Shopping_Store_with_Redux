@@ -198,9 +198,9 @@
 .menu .userOptions{
   position: absolute;
   z-index: 4;
-  top: -5rem;
+  top: -5.15rem;
   left: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -209,9 +209,12 @@
   border: 1px solid #E6E7EB;
   border-radius: 0.2rem;
 }
+.menu:hover .userOptions{
+  display: flex;
+}
 .menu .userOptions .userOption{
   position: relative;
-  width: 5rem;
+  width: 7rem;
   padding: 0.5rem 1rem;
   text-align: left;
   background-color: #fff;
@@ -354,6 +357,10 @@
   #home{
     display:none;
   }
+  .menu .userOptions {
+    top:1.5rem;
+    left:-2rem;
+  }
 }
 @media screen and (min-width:768px) {
   #searchIcon {
@@ -396,5 +403,9 @@
   }
   .menu .menuTitle {
     display: flex;
+  }
+  .menu .userOptions {
+    top: 1.5rem;
+    left: 0;
   }
 }

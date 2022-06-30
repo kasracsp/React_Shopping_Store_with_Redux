@@ -21,15 +21,15 @@ const Navbar = () => {
   const searchRef=useRef()
 
   useEffect(()=>{
-    let handler=(event)=>{
+    let searchHandler=(event)=>{
       if(searchRef.current && !searchRef.current.contains(event.target)){
         setSuggestionList([])
       }
     }
-    document.addEventListener('mousedown',handler);
+    document.addEventListener('mousedown',searchHandler);
     
     return ()=>{
-      document.removeEventListener('mousedown',handler);
+      document.removeEventListener('mousedown',searchHandler);
     }
   })
 
@@ -126,7 +126,7 @@ const Navbar = () => {
           <p className={styles.menuTitle}>search</p>
         </div>
         {user ? (
-          <div className={styles.menu}>
+          <div className={styles.menu} >
             {user.photoURL ? (
               <img src={user.photoURL} alt="avatar" />
             ) : (

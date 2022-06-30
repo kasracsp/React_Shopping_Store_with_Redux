@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
   width: 100%;
   min-height: 70vh;
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
   padding: 1rem 1rem 5rem;
 }
-.container{
+.container {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -15,53 +15,53 @@
   gap: 1rem;
   padding: 1rem 2rem;
   box-shadow: 0 1px 2px 1px #00000026;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   overflow: hidden;
   background-color: #fff;
 }
-.container h3{
+.container h3 {
   font-size: 0.7rem;
 }
-.container img{
+.container img {
   width: 30px;
   aspect-ratio: 1;
 }
-.fieldSet{
+.fieldSet {
   width: 100%;
-  border-top: 1px solid #E6E7EB;
+  border-top: 1px solid #e6e7eb;
 }
-.fieldSet legend{
+.fieldSet legend {
   text-align: center;
-  padding:0 0.5rem;
+  padding: 0 0.5rem;
 }
-.googleSignIn{
+.googleSignIn {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  padding:0.5rem;
+  padding: 0.5rem;
   padding-right: 2rem;
   border-radius: 62.5rem;
   box-shadow: 0 1px 1px 1px #00000026;
   transition: 0.4s;
   cursor: pointer;
 }
-.googleSignIn:hover{
+.googleSignIn:hover {
   box-shadow: 0 1px 2px 1px #00000050;
 }
-.googleSignIn .googleThumb{
+.googleSignIn .googleThumb {
   width: 40px;
   aspect-ratio: 1;
 }
-.googleSignIn .googleTitle{
+.googleSignIn .googleTitle {
   font-size: 0.8rem;
   font-weight: bold;
-  font-family:'Oswald','Roboto', sans-serif;
+  font-family: "Oswald", "Roboto", sans-serif;
 }
 .newAccount {
   font-size: 0.7rem;
 }
-.form{
+.form {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,8 @@
   align-items: center;
   gap: 1rem;
 }
-.inputBox{
+.inputBox,
+.checkBox {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -78,29 +79,29 @@
   gap: 0.1rem;
   position: relative;
 }
-.inputBox input{
+.inputBox input {
   width: 100%;
-  padding: 1rem 2rem 1rem 1rem;
+  padding: 1rem 4rem 1rem 1rem;
   font-size: 1rem;
-  box-shadow:inset 0 0 0 1px #9d9fa2;
+  box-shadow: inset 0 0 0 1px #9d9fa2;
   border-radius: 0.2rem;
   border: none;
-  outline:none;
+  outline: none;
   position: relative;
 }
-.inputBox#inputError input{
-  box-shadow:inset 0 0 0 1px red;
+.inputBox#inputError input {
+  box-shadow: inset 0 0 0 1px red;
 }
-.inputBox#inputCorrect input{
-  box-shadow:inset 0 0 0 1px green;
+.inputBox#inputCorrect input {
+  box-shadow: inset 0 0 0 1px green;
 }
-.inputBox input::placeholder{
+.inputBox input::placeholder {
   font-size: 0.9rem;
 }
-.inputBox input:focus{
+.inputBox input:focus {
   box-shadow: inset 0 0 0 1px #000;
 }
-.inputBox .materialIcons{
+.inputBox .materialIcons {
   position: absolute;
   top: 0.8rem;
   right: 0.5rem;
@@ -111,86 +112,126 @@
   align-items: center;
   gap: 0.2rem;
 }
-.inputBox .materialIcons #errorIcon{
+.inputBox .materialIcons #errorIcon,
+.checkBox .materialIcons #errorIcon {
   color: red;
   display: none;
   cursor: default;
 }
-.inputBox .materialIcons #correctIcon{
+.inputBox .materialIcons #correctIcon,
+.checkBox .materialIcons #correctIcon {
   color: green;
   display: none;
   cursor: default;
 }
-.inputBox#inputError .materialIcons #errorIcon {
+.inputBox#inputError .materialIcons #errorIcon,
+.checkBox#inputError .materialIcons #errorIcon {
   display: block;
 }
-.inputBox#inputCorrect .materialIcons #correctIcon {
+.inputBox#inputCorrect .materialIcons #correctIcon,
+.checkBox#inputCorrect .materialIcons #correctIcon {
   display: block;
 }
-.inputBox .materialIcons #eyeIcon{
+.inputBox .materialIcons #eyeIcon {
   color: orangered;
 }
-.inputBox .error{
+.inputBox .error {
   width: 100%;
   text-align: left;
   color: red;
   font-size: 1rem;
-  font-family: 'Oswald','Roboto',sans-serif;
+  font-family: "Oswald", "Roboto", sans-serif;
 }
-.serverError{
+.checkBox input {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.checkBox label {
+  width: 100%;
+  position: relative;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  font-family: "Oswald", "Roboto", sans-serif;
+}
+.checkBox label::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid orangered;
+}
+.checkBox input:checked ~ label::before {
+  background-color: orangered;
+}
+.checkBox .materialIcons {
+  position: absolute;
+  right: 0;
+}
+.serverError {
   width: 100%;
   text-align: left;
   background-color: rgba(255, 0, 0, 0.418);
   padding: 0.5rem;
   font-size: 1.2rem;
-  font-family: 'Oswald','Roboto',sans-serif;
+  font-family: "Oswald", "Roboto", sans-serif;
   text-align: left;
   border-left: 5px solid red;
   border-radius: 0 4px 4px 0;
 }
-.forgetPassword,.createAccount{
-  color:#0fa9bf;
+.forgetPassword,
+.createAccount {
+  color: #0fa9bf;
   text-decoration: underline;
 }
-.forgetPassword{
+.forgetPassword {
   margin-left: auto;
 }
-.createAccount{
+.createAccount {
   font-weight: bold;
   text-decoration: none;
 }
-.forgetPassword:hover,.createAccount:hover{
+.forgetPassword:hover,
+.createAccount:hover {
   text-decoration: none;
 }
-.submitBtn{
+.submitBtn {
   width: 100%;
   background-color: orangered;
   color: #fff;
-  font-family: 'Oswald', 'Roboto', serif;
+  font-family: "Oswald", "Roboto", serif;
   font-weight: bold;
   font-size: 1.1rem;
-  padding:0.4rem;
+  padding: 0.4rem;
   border-radius: 62.5rem;
   cursor: pointer;
 }
 .submitBtn:hover {
   background-color: rgb(226, 60, 0);
 }
-.submitBtn:disabled{
+.submitBtn:disabled {
   cursor: not-allowed;
 }
-@media screen and (min-width:300px) {
+@media screen and (min-width: 300px) {
   .container h3 {
     font-size: 1rem;
   }
-  .newAccount{
+  .newAccount {
     font-size: 1rem;
   }
   .googleSignIn .googleTitle {
     font-size: 1.1rem;
   }
+  .checkBox label {
+    font-size: 1.1rem;
+  }
 }
-@media screen and (min-width:576px) {
+@media screen and (min-width: 576px) {
   .wrapper {
     padding: 1rem;
   }

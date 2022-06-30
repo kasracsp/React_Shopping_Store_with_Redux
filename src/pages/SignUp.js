@@ -2,35 +2,31 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./SignIn.module.css";
-import GoogleImage from "../assets/google.svg";
 import logoImage from "../assets/logoAlt.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const SignIn = () => {
-  const navigate = useNavigate();
-  const { signInWithGoogle, loginWithEmailAndPassword } =
-    useContext(AuthContext);
+const SignUp = () => {
+  const navigate=useNavigate()
+  const { createNewUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [serverError, setServerError] = useState("");
-  const googleRegister =()=>{
-    try {
-      signInWithGoogle();
-      navigate("/");
-      setServerError("");
-    } catch (error) {
-      setServerError("Failed to sign in");
-    }
-  } 
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <img src={logoImage} alt="logo" />
-        <h3>Sign in to your AceMarket account</h3>
+        <h3>Create your AceMarket account</h3>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{
+            email: "",
+            password: "",
+            confirmPassword: "",
+            privacy: false,
+          }}
           validate={(values) => {
             const errors = {};
+            const matches = values.password.match(/[0-9A-Z@]/g) || [];
             if (!values.email) {
               errors.email = "Email address is required.";
             } else if (
@@ -40,22 +36,34 @@ const SignIn = () => {
             }
             if (!values.password) {
               errors.password = "Password is required.";
+            } else if (values.password.length < 8) {
+              errors.password = "Use at least 8 character.";
+            } else if (matches.length < 1) {
+              errors.password = "Use at least 1 Uppercase, number or @";
+            }
+            if (!values.confirmPassword) {
+              errors.confirmPassword = "Confirm Password is required.";
+            } else if (values.password !== values.confirmPassword) {
+              errors.confirmPassword = "Password doesn't.";
+            }
+            if (!values.privacy) {
+              errors.privacy = "privacy error";
             }
             return errors;
           }}
           onSubmit={async (values, { setSubmitting }) => {
             setSubmitting(true);
             try {
-              await loginWithEmailAndPassword(values.email, values.password);
-              navigate('/');
+              await createNewUser(values.email, values.password);
               setServerError("");
+              navigate('/profile')
             } catch (error) {
               setSubmitting(false);
-              setServerError("Failed to sign in");
+              setServerError("Failed to create a new account");
             }
           }}
         >
-          {({ isSubmitting, errors, touched }) => (
+          {({ values, isSubmitting, errors, touched }) => (
             <Form className={styles.form}>
               {serverError && (
                 <p className={styles.serverError}>{serverError}</p>
@@ -122,32 +130,81 @@ const SignIn = () => {
                   </span>
                 </div>
               </div>
-              <Link to="/resetpassword" className={styles.forgetPassword}>
-                Forget Password?
-              </Link>
+              <div
+                className={styles.inputBox}
+                id={
+                  touched.confirmPassword
+                    ? errors.confirmPassword
+                      ? styles.inputError
+                      : styles.inputCorrect
+                    : ""
+                }
+              >
+                <Field
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  className={
+                    errors.confirmPassword && "" ? styles.inputError : ""
+                  }
+                  placeholder="Confirm Password"
+                />
+                <ErrorMessage
+                  name="confirmPassword"
+                  component="div"
+                  className={styles.error}
+                />
+                <div className={styles.materialIcons}>
+                  <span className="material-icons" id={styles.errorIcon}>
+                    error
+                  </span>
+                  <span className="material-icons" id={styles.correctIcon}>
+                    check_circle
+                  </span>
+                  <span
+                    className="material-icons"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    id={showConfirmPassword ? styles.eyeIcon : ""}
+                  >
+                    {showConfirmPassword ? "visibility" : "visibility_off"}
+                  </span>
+                </div>
+              </div>
+              <div
+                className={styles.checkBox}
+                id={
+                  touched.privacy
+                    ? values.privacy
+                      ? styles.inputCorrect
+                      : styles.inputError
+                    : ""
+                }
+              >
+                <Field type="checkbox" name="privacy" id="privacy" />
+                <label htmlFor="privacy">I accept the Terms of Service</label>
+                <div className={styles.materialIcons}>
+                  <span className="material-icons" id={styles.errorIcon}>
+                    error
+                  </span>
+                  <span className="material-icons" id={styles.correctIcon}>
+                    check_circle
+                  </span>
+                </div>
+              </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
                 className={styles.submitBtn}
               >
-                Sign In
+                Sign Up
               </button>
             </Form>
           )}
         </Formik>
 
-        <fieldset className={styles.fieldSet}>
-          <legend>or</legend>
-        </fieldset>
-
-        <div className={styles.googleSignIn} onClick={googleRegister}>
-          <img src={GoogleImage} alt="google" className={styles.googleThumb} />
-          <span className={styles.googleTitle}>Sign in with google</span>
-        </div>
         <p className={styles.newAccount}>
-          Don't have an account?{" "}
-          <Link to="/signup" className={styles.createAccount}>
-            Create account
+          Already have an account?{" "}
+          <Link to="/signin" className={styles.createAccount}>
+            Log in
           </Link>
         </p>
       </div>
@@ -155,4 +212,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

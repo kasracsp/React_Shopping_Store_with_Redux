@@ -21,6 +21,8 @@ import Product from './pages/Product';
 import ErrorPage from './pages/ErrorPage';
 import Purchase from './pages/Purchase';
 import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -51,6 +53,8 @@ function App() {
                 <Route path='/*' element={<Navigate to='/' />} />
                 <Route path='/purchase' element={<Purchase />} />
                 <Route path='/signin' element={<SignIn />} />
+                <Route path='/signup' element={<SignUp />} />
+                <Route path='/profile' element={<Profile />} />
               </Routes>
               <Footer />
             </AuthContextProvider>
