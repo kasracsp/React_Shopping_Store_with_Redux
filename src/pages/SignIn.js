@@ -47,7 +47,7 @@ const SignIn = () => {
             setSubmitting(true);
             try {
               await loginWithEmailAndPassword(values.email, values.password);
-              navigate('/');
+              navigate('/',{replace:true});
               setServerError("");
             } catch (error) {
               setSubmitting(false);
@@ -122,7 +122,7 @@ const SignIn = () => {
                   </span>
                 </div>
               </div>
-              <Link to="/resetpassword" className={styles.forgetPassword}>
+              <Link to="/forgetpassword" className={styles.forgetPassword}>
                 Forget Password?
               </Link>
               <button

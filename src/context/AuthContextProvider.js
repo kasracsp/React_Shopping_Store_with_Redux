@@ -29,6 +29,10 @@ const AuthContextProvider = ({children}) => {
     return signInWithEmailAndPassword(auth,email,password)
   }
 
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
   const logOut=()=>{
     return signOut(auth)
   }
@@ -40,13 +44,14 @@ const AuthContextProvider = ({children}) => {
     })
   },[user])
 
-  const value={
+  const value = {
     user,
     signInWithGoogle,
     loginWithEmailAndPassword,
     createNewUser,
+    resetPassword,
     logOut,
-  }
+  };
 
   return (
     <AuthContext.Provider value={value}>

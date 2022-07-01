@@ -56,7 +56,7 @@ const SignUp = () => {
             try {
               await createNewUser(values.email, values.password);
               setServerError("");
-              navigate('/profile')
+              navigate("/profile", { replace: true });
             } catch (error) {
               setSubmitting(false);
               setServerError("Failed to create a new account");

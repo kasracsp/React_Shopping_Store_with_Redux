@@ -23,6 +23,7 @@ import Purchase from './pages/Purchase';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
+import ForgetPassword from "./pages/ForgetPassword";
 
 
 function App() {
@@ -36,31 +37,31 @@ function App() {
   },[])
 
   return (
-    
     <div className="App">
-      {
-      productsState.loading?
-        <Loading />:
-          productsState.error?
-          <ErrorPage error={productsState.error}/>:
-          <div>
-            <AuthContextProvider>
-              <Navbar />
-              <Routes>
-                <Route path='/' element={<Landing />} />
-                <Route path='/products' element={<Products />} />
-                <Route path='/product/:id' element={<Product />} />
-                <Route path='/*' element={<Navigate to='/' />} />
-                <Route path='/purchase' element={<Purchase />} />
-                <Route path='/signin' element={<SignIn />} />
-                <Route path='/signup' element={<SignUp />} />
-                <Route path='/profile' element={<Profile />} />
-              </Routes>
-              <Footer />
-            </AuthContextProvider>
-          </div>
-      }
-    </div>  
+      {productsState.loading ? (
+        <Loading />
+      ) : productsState.error ? (
+        <ErrorPage error={productsState.error} />
+      ) : (
+        <div>
+          <AuthContextProvider>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/product/:id" element={<Product />} />
+              <Route path="/*" element={<Navigate to="/" />} />
+              <Route path="/purchase" element={<Purchase />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/forgetpassword" element={<ForgetPassword />} />
+            </Routes>
+            <Footer />
+          </AuthContextProvider>
+        </div>
+      )}
+    </div>
   );
 }
 

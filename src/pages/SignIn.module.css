@@ -184,6 +184,18 @@
   border-left: 5px solid red;
   border-radius: 0 4px 4px 0;
 }
+.serverMessage {
+  width: 100%;
+  text-align: left;
+  background-color: rgba(0, 179, 0, 0.301);
+  color: rgb(0, 70, 0);
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-family: "Oswald", "Roboto", sans-serif;
+  text-align: left;
+  border-left: 5px solid rgb(0, 70, 0);
+  border-radius: 0 4px 4px 0;
+}
 .forgetPassword,
 .createAccount {
   color: #0fa9bf;
