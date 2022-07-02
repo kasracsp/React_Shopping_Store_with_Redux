@@ -4,9 +4,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+:root{
+  -webkit-tap-highlight-color: transparent;
+}
 body {
   margin: 0;
-  -webkit-tap-highlight-color: transparent;
   font-family:'Roboto','Oswald', sans-serif,'Segoe UI';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

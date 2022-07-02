@@ -32,6 +32,12 @@ const AuthContextProvider = ({children}) => {
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
+  
+  const setUsername = (username) => {
+    return updateProfile(user, {
+      displayName:username
+    });
+  };
 
   const logOut=()=>{
     return signOut(auth)
@@ -50,6 +56,7 @@ const AuthContextProvider = ({children}) => {
     loginWithEmailAndPassword,
     createNewUser,
     resetPassword,
+    setUsername,
     logOut,
   };
 
