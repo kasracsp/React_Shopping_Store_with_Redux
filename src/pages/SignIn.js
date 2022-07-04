@@ -3,7 +3,6 @@ import { AuthContext } from "../context/AuthContextProvider";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./SignIn.module.css";
 import GoogleImage from "../assets/google.svg";
-import logoImage from "../assets/logoAlt.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
@@ -25,7 +24,10 @@ const SignIn = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <img src={logoImage} alt="logo" />
+        <img
+          src="https://live.staticflickr.com/65535/52187266808_149712a600_o.png"
+          alt="logo"
+        />
         <h3>Sign in to your AceMarket account</h3>
         <Formik
           initialValues={{ email: "", password: "" }}
@@ -47,7 +49,7 @@ const SignIn = () => {
             setSubmitting(true);
             try {
               await loginWithEmailAndPassword(values.email, values.password);
-              navigate('/',{replace:true});
+              navigate("/", { replace: true });
               setServerError("");
             } catch (error) {
               setSubmitting(false);

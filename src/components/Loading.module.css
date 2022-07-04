@@ -12,6 +12,9 @@
 }
 .logo{
   width: 10rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #fff;
 }
 @keyframes fading{
   0%{

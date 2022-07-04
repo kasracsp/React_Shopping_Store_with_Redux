@@ -1,12 +1,14 @@
 import React,{useContext, useEffect} from 'react'
-import { AuthContext} from '../context/AuthContextProvider'
-import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContextProvider'
+import { useNavigate, useLocation , Link, Outlet } from 'react-router-dom'
+import { whichPage } from '../helper/functions'
 import styles from './Profile.module.css'
-import UpdateUsername from '../components/UpdateUsername';
 
 const Profile = () => {
   const {user}=useContext(AuthContext)
   const navigate=useNavigate()
+  const location=useLocation()
+  const pageRoute=whichPage(location.pathname)
 
   useEffect(()=>{
     if(!user) navigate('/',{replace:true})
@@ -16,43 +18,13 @@ const Profile = () => {
     <>
       {user && (
         <div className={styles.container}>
-          {user.displayName ? (
-            <div className={styles.userDetails}>
-              {user.photoURL ? (
-                <img src={user.photoURL} alt="avatar" />
-              ) : (
-                <span className="material-icons" id={styles.userAvatar}>
-                  account_circle
-                </span>
-              )}
-              <div className={styles.userInfo}>
-                <h3>user name:</h3>
-                <h2>{user.displayName}</h2>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.userDetails}>
-              {user.photoURL ? (
-                <img src={user.photoURL} alt="avatar" />
-              ) : (
-                <span className="material-icons" id={styles.userAvatar}>
-                  account_circle
-                </span>
-              )}
-              <div className={styles.updateUsername}>
-                <UpdateUsername />
-              </div>
-            </div>
-          )}
-          <div className={styles.userDetails}>
-            <span className="material-icons" id={styles.userAvatar}>
-              alternate_email
-            </span>
-            <div className={styles.userInfo}>
-              <h3>email address:</h3>
-              <h2>{user.email}</h2>
-            </div>
+          <div className={styles.profileCategory}>
+            <Link to="userdetails" className={pageRoute === "userdetails" ? styles.active : ''}>
+              user details
+            </Link>
+            <Link to="userorders" className={pageRoute === "userorders" ? styles.active : ''}>last orders</Link>
           </div>
+          <Outlet />
         </div>
       )}
     </>

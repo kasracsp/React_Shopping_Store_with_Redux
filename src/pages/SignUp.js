@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./SignIn.module.css";
-import logoImage from "../assets/logoAlt.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -15,7 +14,7 @@ const SignUp = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <img src={logoImage} alt="logo" />
+        <img src='https://live.staticflickr.com/65535/52187266808_149712a600_o.png' alt="logo" />
         <h3>Create your AceMarket account</h3>
         <Formik
           initialValues={{
@@ -56,7 +55,7 @@ const SignUp = () => {
             try {
               await createNewUser(values.email, values.password);
               setServerError("");
-              navigate("/profile", { replace: true });
+              navigate("/profile/userdetails", { replace: true });
             } catch (error) {
               setSubmitting(false);
               setServerError("Failed to create a new account");

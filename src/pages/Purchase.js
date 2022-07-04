@@ -1,9 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import OrderItem from "../components/OrderItem";
 import { useSelector, useDispatch } from "react-redux";
 import { clearItem, checkoutItem } from "../redux/orders/ordersAction";
 import { Link } from "react-router-dom";
+import axios from 'axios'
 import { AuthContext } from '../context/AuthContextProvider'
 import styles from "./Purchase.module.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,8 +13,9 @@ const Purchase = () => {
   const ordersState = useSelector((state) => state.ordersState);
   const dispatch = useDispatch();
   const { user } = useContext(AuthContext);
-  const notify = () =>
-    toast.error("Please sign in first!", {
+  const [isSubmitting,setIsSubmitting]=useState(false)
+  const notify = (text) =>
+    toast.error(text, {
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -29,11 +31,28 @@ const Purchase = () => {
     });
   }, []);
 
-  const checkoutHandler=()=>{
+  const checkoutHandler=async ()=>{
+    setIsSubmitting(true)
     if(user){
-      dispatch(checkoutItem())
+      const data = {
+        data: {
+          userId: user.email,
+          orders: {
+            orders: [...ordersState.orders],
+          },
+        },
+      };
+      try {
+        await axios.post("http://localhost:1337/api/orders",data)
+        dispatch(checkoutItem())
+        setIsSubmitting(false);
+      } catch (error) {
+        notify("Request failed, Please try again!");
+        setIsSubmitting(false);
+      }
     }else{
-      notify()
+      notify("Please sign in first!");
+      setIsSubmitting(false);
     }
   }
 
@@ -58,7 +77,11 @@ const Purchase = () => {
               <h2>${ordersState.totalPrice}</h2>
             </div>
             <div className={styles.section}>
-              <button onClick={checkoutHandler} className={styles.checkout}>
+              <button
+                onClick={checkoutHandler}
+                className={styles.checkout}
+                disabled={isSubmitting}
+              >
                 Continue to checkout
               </button>
             </div>
@@ -93,6 +116,10 @@ const Purchase = () => {
               alt="emptyCart"
             />
             <h2>Checkout Successfully!</h2>
+            <h3>
+              You can track your orders{" "}
+              <Link to="/profile/userorders">here</Link>
+            </h3>
             <Link to="/products">Buy More</Link>
           </div>
         </div>

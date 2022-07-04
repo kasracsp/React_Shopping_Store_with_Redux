@@ -66,6 +66,9 @@
 .checkout:hover{
   background-color: rgb(226, 60, 0);
 }
+.checkout:disabled{
+  cursor: not-allowed;
+}
 .section h2{
   font-family: 'Oswald','Roboto',serif;
   font-weight: bold;
@@ -109,6 +112,15 @@
 .emptyContainer img{
   width: 15rem;
   aspect-ratio: 1;
+}
+.emptyContainer h3 a{
+  color: orangered;
+  background-color: #fff;
+  text-align: center;
+  font-size: inherit;
+  text-transform: lowercase;
+  color: #0fa9bf;
+  font-weight: bold;
 }
 .emptyContainer a {
   position: relative;

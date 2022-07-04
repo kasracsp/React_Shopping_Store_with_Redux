@@ -36,6 +36,16 @@ const calcQuantity=(orders,key)=>{
   }
 }
 
+const whichPage=(location)=>{
+  const pageRoute=location.split('/')[2]
+  return pageRoute
+}
+
+const filterUserOrders=(orders,user)=>{
+  const filteredOrders = orders.filter((item) => item.attributes.userId === user);
+  return filteredOrders
+}
+
 export {
   getCategories,
   getSuggestions,
@@ -43,4 +53,6 @@ export {
   isInCategory,
   isInOrders,
   calcQuantity,
-}
+  whichPage,
+  filterUserOrders,
+};

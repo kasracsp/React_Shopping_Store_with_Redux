@@ -24,6 +24,8 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Profile from './pages/Profile';
 import ForgetPassword from "./pages/ForgetPassword";
+import UserOrders from './pages/UserOrders';
+import UserDetails from './pages/UserDetails';
 
 
 function App() {
@@ -50,12 +52,15 @@ function App() {
               <Route path="/" element={<Landing />} />
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<Product />} />
-              <Route path="/*" element={<Navigate to="/" />} />
               <Route path="/purchase" element={<Purchase />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<Profile />}>
+                <Route path="userdetails" element={<UserDetails />} />
+                <Route path="userorders" element={<UserOrders />} />
+              </Route>
               <Route path="/forgetpassword" element={<ForgetPassword />} />
+              <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
             <Footer />
           </AuthContextProvider>

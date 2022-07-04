@@ -7,9 +7,6 @@ import { AuthContext } from "../context/AuthContextProvider";
 //styles
 import styles from './Navbar.module.css'
 
-//assets
-import logo from '../assets/logo.png'
-
 const Navbar = () => {
   const { user, logOut }=useContext(AuthContext);
   const productsState=useSelector(state=>state.productsState)
@@ -47,7 +44,10 @@ const Navbar = () => {
     <div className={styles.container}>
       <div className={styles.leftNav}>
         <Link to="/">
-          <img src={logo} alt="logo" />
+          <img
+            src="https://live.staticflickr.com/65535/52189316838_8a83683d14_b.jpg"
+            alt="logo"
+          />
         </Link>
         <div className={styles.categoriesContainer}>
           <div to="/products" className={styles.categoriesTitle}>
@@ -126,7 +126,7 @@ const Navbar = () => {
           <p className={styles.menuTitle}>search</p>
         </div>
         {user ? (
-          <div className={styles.menu} >
+          <div className={styles.menu}>
             {user.photoURL ? (
               <img src={user.photoURL} alt="avatar" />
             ) : (
@@ -138,8 +138,12 @@ const Navbar = () => {
               <p className={styles.menuTitle}>My Account</p>
             )}
             <div className={styles.userOptions}>
-              <Link to="/profile" className={styles.userOption}>Profile</Link>
-              <button onClick={() => logOut()} className={styles.userOption}>Log out</button>
+              <Link to="/profile/userdetails" className={styles.userOption}>
+                Profile
+              </Link>
+              <button onClick={() => logOut()} className={styles.userOption}>
+                Log out
+              </button>
             </div>
           </div>
         ) : (

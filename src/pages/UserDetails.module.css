@@ -1,0 +1,83 @@
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  place-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.userDetails{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 1px 2px 1px #00000026;
+  border-radius: .5rem;
+  overflow: hidden;
+  padding: 1rem;
+  background-color: #fff;
+}
+.userDetails img{
+  width: 5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+.userDetails #userAvatar{
+  width: 5rem;
+  height: 5rem;
+  background-color: #E6E7EB;
+  color: #00000090;
+  font-size: 4rem;
+  line-height: 5rem;
+  text-align: center;
+  border-radius: 50%;
+}
+.userDetails .userInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.userDetails .userInfo h3{
+  color: #000000a8;
+  text-transform: capitalize;
+  font-family: 'Oswald','Robotos',sans-serif;
+  font-size: 0.9rem;
+}
+.userDetails .userInfo h2{
+  color: #000;
+  text-transform: capitalize;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+}
+@media screen and (min-width:576px) {
+  .userDetails{
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .container{
+    padding-bottom: 2rem;
+  }
+}
+@media screen and (min-width:768px) {
+  .container{
+    padding: 3rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .userDetails .userInfo h3{
+    color: #000000a8;
+    text-transform: capitalize;
+    font-family: 'Oswald','Robotos',sans-serif;
+    font-size: 1.2rem;
+  }
+  .userDetails .userInfo h2{
+    color: #000;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+  }
+}

@@ -2,11 +2,12 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import styles from "./UpdateUsername.module.css";
+import { useNavigate } from 'react-router-dom'
 
 const UpdateUsername = () => {
   const { setUsername } = useContext(AuthContext);
   const [serverError, setServerError] = useState("");
-
+  const navigate = useNavigate;
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -27,10 +28,10 @@ const UpdateUsername = () => {
             try {
               await setUsername(values.username);
               setServerError("");
-              window.location.reload(false);
+              navigate('/')
             } catch (error) {
               setSubmitting(false);
-              setServerError("username address doesn't exist");
+              setServerError("Failed, please try later");
             }
           }}
         >
