@@ -26,6 +26,7 @@ import Profile from './pages/Profile';
 import ForgetPassword from "./pages/ForgetPassword";
 import UserOrders from './pages/UserOrders';
 import UserDetails from './pages/UserDetails';
+import LastOrderDetail from './pages/LastOrderDetail';
 
 
 function App() {
@@ -58,6 +59,10 @@ function App() {
               <Route path="/profile" element={<Profile />}>
                 <Route path="userdetails" element={<UserDetails />} />
                 <Route path="userorders" element={<UserOrders />} />
+                <Route
+                  path="lastorderdetail/:id"
+                  element={<LastOrderDetail />}
+                />
               </Route>
               <Route path="/forgetpassword" element={<ForgetPassword />} />
               <Route path="/*" element={<Navigate to="/" />} />

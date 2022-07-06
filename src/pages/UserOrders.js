@@ -1,7 +1,12 @@
 import React,{useEffect, useContext} from 'react'
 import { AuthContext } from "../context/AuthContextProvider";
-import { filterUserOrders } from '../helper/functions';
+import {
+  filterUserOrders,
+  userOrdersTotalPrice,
+  userOrdersTotalQuantity,
+} from "../helper/functions";
 import fetchLastOrders from "../redux/lastOrders/lastOrdersAction";
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import OrderItem from '../components/OrderItem';
 import styles from "./UserOrders.module.css";
@@ -34,14 +39,45 @@ const UserOrders = () => {
         <h2>{lastOrdersState.error}</h2>
       ) : (
         // filterUserOrders(lastOrdersState.orders, user.email).map((item,index) => (
-        //   <OrderItem
-        //     key={index}
-        //     product={lastOrdersState.orders.attributes}
-        //   />
+
         // ))
-        filterUserOrders(lastOrdersState.orders, user.email).map((item) => (
-          <p key={item.id}>{item.id}</p>
-        ))
+        filterUserOrders(lastOrdersState.orders, user.email).map(
+          (item, index) => (
+            <Link
+              to={`/profile/lastorderdetail/${item.id}`}
+              className={styles.lastOrder}
+              key={item.id}
+            >
+              <div className={styles.leftDetail}>
+                <h5>{index + 1}</h5>
+                <div className={styles.images}>
+                  {item.attributes.orders.orders.map((order) => (
+                    <img src={order.image} key={order.id} alt={order.title} />
+                  ))}
+                </div>
+              </div>
+              <h4>
+                total: ${userOrdersTotalPrice(item.attributes.orders.orders)}
+              </h4>
+              <h4>
+                quantity:
+                {userOrdersTotalQuantity(item.attributes.orders.orders)}{" "}
+                {userOrdersTotalQuantity(item.attributes.orders.orders) === 1
+                  ? "item"
+                  : "items"}
+              </h4>
+              <h5>
+                {new Date(
+                  lastOrdersState.orders[0].attributes.createdAt
+                ).toLocaleString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </h5>
+            </Link>
+          )
+        )
       )}
     </div>
   );

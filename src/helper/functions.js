@@ -43,7 +43,26 @@ const whichPage=(location)=>{
 
 const filterUserOrders=(orders,user)=>{
   const filteredOrders = orders.filter((item) => item.attributes.userId === user);
+  filteredOrders.sort((a, b) => {
+    return b.id - a.id;
+  });
   return filteredOrders
+}
+
+const userOrdersTotalPrice=(orders)=>{
+  const totalPrice = orders.reduce(
+    (sum, order) => sum + order.price * order.quantity,
+    0
+  );
+  return totalPrice
+}
+
+const userOrdersTotalQuantity=(orders)=>{
+  const totalQuantity = orders.reduce(
+    (sum, order) => sum + order.quantity,
+    0
+  );
+  return totalQuantity
 }
 
 export {
@@ -55,4 +74,6 @@ export {
   calcQuantity,
   whichPage,
   filterUserOrders,
+  userOrdersTotalPrice,
+  userOrdersTotalQuantity,
 };
