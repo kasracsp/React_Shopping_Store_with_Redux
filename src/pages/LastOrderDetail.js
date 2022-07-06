@@ -18,13 +18,13 @@ const LastOrderDetail = () => {
   const [userOrder,setUserOrder]=useState([])
 
   useEffect(() => {
-    if (lastOrdersState.orders.length) {
-      setUserOrder(
-        filterUserOrders(lastOrdersState.orders, user.email).filter(
-          (item) => item.id === Number(params.id)
-        )
-      );
-    }
+      if (lastOrdersState.orders && lastOrdersState.orders.length) {
+        setUserOrder(
+          filterUserOrders(lastOrdersState.orders, user.email).filter(
+            (item) => item.id === Number(params.id)
+          )
+        );
+      }
   }, [lastOrdersState]);
 
   return (
