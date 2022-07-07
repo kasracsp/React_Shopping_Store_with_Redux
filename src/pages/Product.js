@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom'
 import styles from './Product.module.css'
 import {Magnifier,SideBySideMagnifier} from "react-image-magnifiers";
 import Slider from '../shared/Slider';
+import fetchComments from "../redux/comments/commentsAction";
+import Comments from '../components/Comments';
 import { useSelector, useDispatch } from 'react-redux'
 import { isInOrders } from '../helper/functions';
 import { addItem } from '../redux/orders/ordersAction';
@@ -16,16 +18,21 @@ const Product = () => {
 
   const productData=productsState.products.filter(item=>item.id === Number(params.id))
 
-  useEffect(()=>{
-    window.scrollTo({
-      top:0
-    })
-  },[params])
+  useEffect(() => {
+    dispatch(fetchComments());
+  }, []);
+
+  // useEffect(()=>{
+  //   window.scrollTo({
+  //     top:0
+  //   })
+  // },[params])
+  
+  
 
   return (
     <>
-    {
-      productData.length &&
+      {productData.length && (
         <div className={styles.container}>
           <div className={styles.productSection}>
             <div className={styles.productThumb}>
@@ -38,8 +45,8 @@ const Product = () => {
                 imageSrc={productData[0].image}
                 fillAvailableSpace={false}
                 imageAlt={productData[0].title}
-                overlayBoxColor='#fff'
-                overlayBackgroundColor='black'
+                overlayBoxColor="#fff"
+                overlayBackgroundColor="black"
                 inPlaceMinBreakpoint={768}
                 className={styles.sideBySide}
               />
@@ -49,37 +56,55 @@ const Product = () => {
               <div className={styles.description}>
                 <p>product details:</p>
                 <ul>
-                  {(productData[0].description.split(', ')).map((item,index)=>
+                  {productData[0].description.split(", ").map((item, index) => (
                     <li key={index}>{item}</li>
-                  )}
+                  ))}
                 </ul>
-
               </div>
               <div className={styles.priceSection}>
                 <span className={styles.price}>${productData[0].price}</span>
                 <div className={styles.buttons}>
-                  {isInOrders(ordersState.orders,productData[0].id)?
-                    <Buttons product={productData[0]} isInProduct={true}/>:
-                    <button className={styles.firstAdd} onClick={()=>dispatch(addItem(productData[0]))}>add to cart</button>
-                  }
+                  {isInOrders(ordersState.orders, productData[0].id) ? (
+                    <Buttons product={productData[0]} isInProduct={true} />
+                  ) : (
+                    <button
+                      className={styles.firstAdd}
+                      onClick={() => dispatch(addItem(productData[0]))}
+                    >
+                      add to cart
+                    </button>
+                  )}
                 </div>
               </div>
               <div className={styles.footer}>
                 <div className={styles.rating}>
-                  <span className='material-icons'>star</span>
-                  <p className={styles.rate}>({productData[0].rating.rate}) {productData[0].rating.count} reviews</p>
+                  <span className="material-icons">star</span>
+                  <p className={styles.rate}>
+                    ({productData[0].rating.rate}) {productData[0].rating.count}{" "}
+                    reviews
+                  </p>
                 </div>
-                <Link to={`/products?category=${productData[0].category}`} className={styles.category}>{productData[0].category}</Link>
+                <Link
+                  to={`/products?category=${productData[0].category}`}
+                  className={styles.category}
+                >
+                  {productData[0].category}
+                </Link>
               </div>
             </div>
           </div>
           <div className={styles.sameProducts}>
-            <Slider category={productData[0].category} title='you may also like' isShow={true} />
+            <Slider
+              category={productData[0].category}
+              title="you may also like"
+              isShow={true}
+            />
           </div>
+          <Comments productId={productData[0].id} />
         </div>
-      }
+      )}
     </>
-  )
+  );
 }
 
 export default Product
