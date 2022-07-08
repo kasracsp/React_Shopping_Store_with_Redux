@@ -35,3 +35,7 @@
 .comment::first-letter{
   text-transform: uppercase;
 }
+.replies{
+  width: 90%;
+  margin-left: 10%;
+}

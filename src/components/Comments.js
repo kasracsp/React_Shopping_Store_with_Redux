@@ -1,8 +1,8 @@
-import React,{useEffect,useState} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import styles from "./Comments.module.css"
-import Spinner from '../assets/Spinner.svg'
 import Comment from './Comment'
+import CommentForm from '../shared/CommentForm'
 
 const Comments = ({productId}) => {
   const commentsState=useSelector(state=>state.commentsState)
@@ -22,18 +22,19 @@ const Comments = ({productId}) => {
 
   return (
     <div className={styles.container}>
-      {commentsState.loading ? (
-        <img src={Spinner} alt="loading" />
-      ) : commentsState.error ? (
-        <h1>{commentsState.error}</h1>
-      ) : (
+      <CommentForm productId={productId} parentId={null} />
+      <h2 className={styles.title}>comments</h2>
+      {rootComments.length > 0 ? (
         rootComments.map((comment) => (
           <Comment
             key={comment.id}
             comment={comment}
             reply={replyFinder(comment.attributes.userId)}
+            id={comment.id}
           />
         ))
+      ) : (
+        <h3>There's no comment yet!</h3>
       )}
     </div>
   );

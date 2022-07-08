@@ -9,26 +9,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import { isInOrders } from '../helper/functions';
 import { addItem } from '../redux/orders/ordersAction';
 import Buttons from '../shared/Buttons';
+import Spinner from "../assets/Spinner.svg";
 
 const Product = () => {
   const params=useParams()
   const productsState=useSelector(state=>state.productsState)
   const ordersState=useSelector(state=>state.ordersState)
+  const commentsState = useSelector((state) => state.commentsState);
+
   const dispatch=useDispatch()
 
   const productData=productsState.products.filter(item=>item.id === Number(params.id))
 
   useEffect(() => {
     dispatch(fetchComments());
-  }, []);
-
-  // useEffect(()=>{
-  //   window.scrollTo({
-  //     top:0
-  //   })
-  // },[params])
-  
-  
+    window.scrollTo({
+      top: 0,
+    });
+  }, [params]);
 
   return (
     <>
@@ -100,7 +98,14 @@ const Product = () => {
               isShow={true}
             />
           </div>
+          {
+            commentsState.loading ? (
+              <img src={Spinner} alt="loading" />
+            ) : commentsState.error ? (
+              <h3>Couldn't fetch comments</h3>
+            ) :
           <Comments productId={productData[0].id} />
+          }
         </div>
       )}
     </>

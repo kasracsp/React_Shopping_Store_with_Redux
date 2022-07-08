@@ -8,3 +8,19 @@
   padding: 1rem;
   gap: 1rem;
 }
+.title{
+  width: 100%;
+  text-align-last: left;
+  font-family:'Oswald','Roboto', sans-serif;
+  text-transform: capitalize;
+}
+@media screen and (min-width:992px) {
+  .container{
+    padding: 1rem 3rem;
+  }
+}
+@media screen and (min-width:1200px) {
+  .container{
+    padding: 1rem 5rem;
+  }
+}
