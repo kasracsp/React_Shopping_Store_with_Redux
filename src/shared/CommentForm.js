@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContextProvider";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { v4 } from "uuid";
 import { useParams } from "react-router-dom";
 import styles from "./CommentForm.module.css";
 
@@ -53,7 +54,8 @@ const CommentForm = ({productId,parentId}) => {
             setSubmitting(true);
             const data = {
               data: {
-                userId: values.email,
+                userId: v4(),
+                userName:values.email,
                 productId: productId,
                 parentId: parentId,
                 comment: values.comment.replace(/\n/g,"\n\n"),

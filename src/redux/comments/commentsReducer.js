@@ -18,9 +18,8 @@ const commentsReducer=(state=initialState,action)=>{
     case "FETCH_COMMENTS_FAILURE":
       return {
         loading: false,
-        error:action.payload,
+        error: action.payload,
       };
-
     default:
       return state;
   }

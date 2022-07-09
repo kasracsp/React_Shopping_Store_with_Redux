@@ -65,6 +65,11 @@ const userOrdersTotalQuantity=(orders)=>{
   return totalQuantity
 }
 
+const hasReply=(key,replies)=>{
+  const hasIt=!replies.find(reply=>reply.attributes.parentId === key)
+  return hasIt
+}
+
 export {
   getCategories,
   getSuggestions,
@@ -76,4 +81,5 @@ export {
   filterUserOrders,
   userOrdersTotalPrice,
   userOrdersTotalQuantity,
+  hasReply,
 };

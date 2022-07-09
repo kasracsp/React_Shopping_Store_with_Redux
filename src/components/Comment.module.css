@@ -38,4 +38,29 @@
 .replies{
   width: 90%;
   margin-left: 10%;
+  margin-top: 1rem;
+}
+.buttons{
+  padding:0.2rem 0 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+.buttons span{
+  cursor: pointer;
+  filter: grayscale(0.6);
+  transition: 0.1s;
+}
+.buttons span:hover{
+  filter: grayscale(0);
+}
+.buttons #replyBtn{
+  color:green;
+}
+.buttons #deleteBtn{
+  color:red;
+}
+.buttons #editBtn{
+  color:#0af;
 }

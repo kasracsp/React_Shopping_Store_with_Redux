@@ -12,12 +12,15 @@ const Comments = ({productId}) => {
   );
 
   const rootComments= productComments.filter(item=>item.attributes.parentId === null)
+  rootComments.sort((a,b)=>{
+    return b.id - a.id
+  })
 
   const replyFinder=currentId=>{
     const filterReply = productComments.filter(
       (item) => item.attributes.parentId === currentId
     );
-      return filterReply
+    return filterReply
   }
 
   return (
