@@ -22,9 +22,11 @@ const fetchLastOrders=()=>{
   return (dispatch)=>{
     dispatch(fetchLastOrdersRequest());
     axios
-      .get("http://localhost:1337/api/orders")
+      .get(
+        "http://localhost:1337/api/orders?pagination[page]=1&pagination[pageSize]=100"
+      )
       .then((response) => dispatch(fetchLastOrdersSuccess(response.data.data)))
-      .catch(error=>dispatch(fetchLastOrdersFailure(error.message)))
+      .catch((error) => dispatch(fetchLastOrdersFailure(error.message)));
   }
 }
 

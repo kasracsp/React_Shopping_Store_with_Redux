@@ -21,7 +21,7 @@ const LastOrderDetail = () => {
       if (lastOrdersState.orders && lastOrdersState.orders.length) {
         setUserOrder(
           filterUserOrders(lastOrdersState.orders, user.email).filter(
-            (item) => item.id === Number(params.id)
+            (item) => item.id == params.id
           )
         );
       }

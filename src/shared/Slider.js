@@ -33,13 +33,16 @@ const Slider = ({category,title,isShow}) => {
       </div>
       <Swiper className={styles.slides}
         spaceBetween={12}
-        slidesPerView={2}
+        slidesPerView={1}
         onInit={(ev) => {
           setMySwiper(ev)
           setIsEnd(ev.isEnd)
         }}
         breakpoints= {
           {
+            300: {
+              slidesPerView: 2
+            },
             768: {
               slidesPerView: 3
             },

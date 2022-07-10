@@ -20,7 +20,7 @@ const fetchGeolocationFailure=()=>{
 const fetchGeolocation=()=>{
   return (dispatch)=>{
     dispatch(fetchGeolocationRequest())
-    axios.get(`https://api.ipggeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEOLOCATION_IP_KEY}`)
+    axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEOLOCATION_IP_KEY}`)
     .then(response=>dispatch(fetchGeolocationSuccess(response.data)))
     .catch(error=>dispatch(fetchGeolocationFailure()))
   }

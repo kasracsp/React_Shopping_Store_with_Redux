@@ -23,11 +23,11 @@ const Footer = () => {
           <div className={styles.location}>
             <div className={styles.continent}>
               <span className="material-icons">public</span>
-              <span>{continent_name}</span>
+              <span className={styles.continentName}>{continent_name}</span>
             </div>
             <div className={styles.continent}>
               <img src={country_flag} alt={country_name} />
-              <span>{country_name}</span>
+              <span className={styles.continentName}>{country_name}</span>
             </div>
           </div>
         )}

@@ -54,6 +54,9 @@
   border-radius: 0.2rem;
   padding: .3rem 1rem .3rem .3rem;
 }
+.continent .continentName{
+  font-size: 0.8rem;
+}
 .copyRight{
   width: 100%;
   text-align: center;
@@ -68,5 +71,8 @@
   }
   .logo img:last-child {
     display: block;
+  }
+  .continent .continentName{
+    font-size:1rem;
   }
 }
