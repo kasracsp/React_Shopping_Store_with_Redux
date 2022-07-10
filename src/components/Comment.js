@@ -6,37 +6,51 @@ import { hasReply } from '../helper/functions';
 import fetchComments from "../redux/comments/commentsAction";
 import { useDispatch } from 'react-redux'
 import { ToastContainer, toast } from "react-toastify";
+import CommentForm from '../shared/CommentForm';
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Comment.module.css";
 
 
-const Comment = ({comment,reply,id}) => {
+const Comment = ({ comment, reply, productId }) => {
   const { user } = useContext(AuthContext);
-  const [isReplying,setIsReplying]=useState(false);
-  const [isEditing,setIsEditing]=useState(false);
+  const [isReplying, setIsReplying] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const canDelete =
     user &&
     user.email === comment.attributes.userName &&
-    hasReply(comment.attributes.userId,reply);
+    hasReply(comment.attributes.userId, reply);
   const canEdit =
     user &&
     user.email === comment.attributes.userName &&
     !(new Date() - new Date(comment.attributes.createdAt) > 900000);
-  const dispatch=useDispatch()
-  const notify = (text) =>{
-      toast.error(text, {
-        position: "top-center",
-      });
-    }
+  const replyId = comment.attributes.parentId
+    ? comment.attributes.parentId
+    : comment.attributes.userId;
+  const dispatch = useDispatch();
+  const notify = (text) => {
+    toast.error(text, {
+      position: "top-center",
+    });
+  };
 
-  const deleteComment=async id=>{
+  const deleteComment = async (id) => {
     try {
       await axios.delete(`http://localhost:1337/api/comments/${id}`);
-      dispatch(fetchComments())
+      dispatch(fetchComments());
     } catch (error) {
-      notify('Failed,please try again')
+      notify("Failed,please try again");
     }
-  }
+  };
+
+  const openFormHandler = (key) => {
+    if (key === "edit") {
+      setIsEditing(!isEditing);
+      setIsReplying(false);
+    } else {
+      setIsEditing(false);
+      setIsReplying(!isReplying);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -64,7 +78,7 @@ const Comment = ({comment,reply,id}) => {
           className="material-icons"
           id={styles.replyBtn}
           title="Reply"
-          onClick={() => setIsReplying(!isReplying)}
+          onClick={() => openFormHandler("reply")}
         >
           reply
         </span>
@@ -73,7 +87,7 @@ const Comment = ({comment,reply,id}) => {
             className="material-icons"
             id={styles.deleteBtn}
             title="Delete"
-            onClick={() => deleteComment(id)}
+            onClick={() => deleteComment(comment.id)}
           >
             delete
           </span>
@@ -83,21 +97,38 @@ const Comment = ({comment,reply,id}) => {
             className="material-icons"
             id={styles.editBtn}
             title="Edit"
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={() => openFormHandler("edit")}
           >
             edit
           </span>
         )}
       </div>
+      {isReplying && (
+        <CommentForm label="Reply" productId={productId} parentId={replyId} />
+      )}
+      {isEditing && (
+        <CommentForm
+          label="Edit"
+          productId={productId}
+          parentId={replyId}
+          editComment={comment.attributes.comment}
+          id={comment.id}
+        />
+      )}
       <div className={styles.replies}>
         {reply.length > 0 &&
           reply.map((reply) => (
-            <Comment key={reply.id} comment={reply} reply={[]} id={reply.id} />
+            <Comment
+              key={reply.id}
+              comment={reply}
+              reply={[]}
+              productId={productId}
+            />
           ))}
       </div>
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default Comment

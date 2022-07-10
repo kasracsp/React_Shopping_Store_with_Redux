@@ -2,25 +2,29 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContextProvider";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import fetchComments from "../redux/comments/commentsAction";
+import { useDispatch } from "react-redux";
 import { v4 } from "uuid";
 import { useParams } from "react-router-dom";
 import styles from "./CommentForm.module.css";
 
-const CommentForm = ({productId,parentId}) => {
-    const params = useParams();
+const CommentForm = ({label,productId,parentId,editComment,id}) => {
+  const dispatch=useDispatch()
+  const params = useParams();
   const { user } = useContext(AuthContext);
   const formikRef = useRef();
   const [serverError, setServerError] = useState("");
-  const [serverMessage, setServerMessage] = useState("");
 
   useEffect(() => {
     setServerError('')
-    setServerMessage('')
     formikRef.current.resetForm()
     if (user) {
       formikRef.current.setFieldValue("email", user.email);
     }else{
       formikRef.current.setFieldValue("email", '');
+    }
+    if(editComment){
+      formikRef.current.setFieldValue("comment", editComment);
     }
   }, [params,user]);
 
@@ -52,34 +56,48 @@ const CommentForm = ({productId,parentId}) => {
               },
             });
             setSubmitting(true);
-            const data = {
-              data: {
-                userId: v4(),
-                userName:values.email,
-                productId: productId,
-                parentId: parentId,
-                comment: values.comment.replace(/\n/g,"\n\n"),
-              },
-            };
-            try {
-              await axios.post("http://localhost:1337/api/comments", data);
-              setServerError("");
-              setServerMessage("Your Comment will be published after revision");
-              setSubmitting(false);
-            } catch (error) {
-              setSubmitting(false);
-              setServerMessage("");
-              setServerError("Failed, please try again");
+            if(label == 'Edit'){
+              const data = {
+                data: {
+                  comment: values.comment.replace(/\n/g, "\n\n"),
+                },
+              };
+              try {
+                await axios.put(`http://localhost:1337/api/comments/${id}`, data);
+                setServerError("");
+                dispatch(fetchComments());
+                setSubmitting(false);
+              } catch (error) {
+                setSubmitting(false);
+                setServerError("Failed, please try again");
+              }
+              return
             }
-          }}
+              const data = {
+                data: {
+                  userId: v4(),
+                  userName: values.email,
+                  productId: productId,
+                  parentId: parentId,
+                  comment: values.comment.replace(/\n/g, "\n\n"),
+                },
+              };
+              try {
+                await axios.post("http://localhost:1337/api/comments", data);
+                setServerError("");
+                dispatch(fetchComments());
+                setSubmitting(false);
+              } catch (error) {
+                setSubmitting(false);
+                setServerError("Failed, please try again");
+              }
+            }
+          }
         >
           {({ isSubmitting, errors, touched }) => (
             <Form className={styles.form}>
               {serverError && (
                 <p className={styles.serverError}>{serverError}</p>
-              )}
-              {serverMessage && (
-                <p className={styles.serverMessage}>{serverMessage}</p>
               )}
               {!user && (
                 <div
@@ -147,7 +165,7 @@ const CommentForm = ({productId,parentId}) => {
                 disabled={isSubmitting}
                 className={styles.submitBtn}
               >
-                Submit
+                {label}
               </button>
             </Form>
           )}

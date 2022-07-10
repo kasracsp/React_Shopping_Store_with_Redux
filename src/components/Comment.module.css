@@ -9,6 +9,7 @@
   overflow: hidden;
   padding:0.5rem 1rem;
   background-color: #fff;
+  font-size: 1rem;
 }
 .header{
   width: 100%;
@@ -20,14 +21,17 @@
 }
 .user{
   color: #000;
+  font-size: 0.6em;
 }
 .date{
   color: grey;
+  font-size: 0.5em;
 }
 .comment{
   width: 100%;
   font-weight: bold;
   color: #000;
+  font-size: 1rem;
   padding-top:1rem ;
   padding-bottom:1rem ;
   border-bottom: 1px solid #E6E7EB;
@@ -38,7 +42,12 @@
 .replies{
   width: 90%;
   margin-left: 10%;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
 }
 .buttons{
   padding:0.2rem 0 0.5rem;
@@ -51,6 +60,7 @@
   cursor: pointer;
   filter: grayscale(0.6);
   transition: 0.1s;
+  font-size: 1.5rem;
 }
 .buttons span:hover{
   filter: grayscale(0);
@@ -63,4 +73,15 @@
 }
 .buttons #editBtn{
   color:#0af;
+}
+
+@media screen and (min-width:300px) {
+  .container{
+    font-size: 1.5rem;
+  }
+}
+@media screen and (min-width:400px) {
+  .container{
+    font-size: 2rem;
+  }
 }

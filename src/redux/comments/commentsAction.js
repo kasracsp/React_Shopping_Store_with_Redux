@@ -21,9 +21,11 @@ const fetchComments=()=>{
   return (dispatch)=>{
     dispatch(fetchCommentsRequest())
     axios
-      .get("http://localhost:1337/api/comments")
+      .get(
+        "http://localhost:1337/api/comments?pagination[page]=1&pagination[pageSize]=100"
+      )
       .then((response) => {
-        dispatch(fetchCommentsSuccess(response.data.data))
+        dispatch(fetchCommentsSuccess(response.data.data));
       })
       .catch((error) => dispatch(fetchCommentsFailure(error.message)));
   };
